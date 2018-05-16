@@ -46,7 +46,16 @@ namespace Pente
         }
 
         /// <summary>
-        /// Check all Patterns, switch currentPlayerPiece, if currentPlayerPiece is P2 and p2 is type computer call PlacePiece(p2.takeTurn())
+        /// checks validity of placement
+        /// </summary>
+        /// <param name="position"></param>
+        public bool IsValidPlacement(Vec2 position)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Placce Piece on board, Check all Patterns, switch currentPlayerPiece, if currentPlayerPiece is P2 and p2 is type computer call PlacePiece(p2.takeTurn())
         /// </summary>
         /// <param name="position"></param>
         public void PlacePiece(Vec2 position)
@@ -78,7 +87,7 @@ namespace Pente
         /// <param name="start"></param>
         /// <param name="end"></param>
         /// <returns>bool if the pattern was found</returns>
-        public bool CheckForPattern(Piece[] pattern, ref Vec2 start, ref Vec2 end)
+        public bool CheckForPattern(Piece[] pattern, bool isSymetrical, ref Vec2 start, ref Vec2 end)
         {
             throw new NotImplementedException();
         }
