@@ -67,7 +67,7 @@ namespace Pente
         /// CheckForPattern(Win) or currentPlayer captures >= 5
         /// </summary>
         /// <returns></returns>
-        public bool CheckForWin()
+        public bool CheckForWin(Vec2 position)
         {
             throw new NotImplementedException();
         }
@@ -75,7 +75,7 @@ namespace Pente
         /// <summary>
         /// CheckForPattern(Capture) and then remove pieces if capture exists
         /// </summary>
-        public void CheckForCapture()
+        public void CheckForCapture(Vec2 position)
         {
             throw new NotImplementedException();
         }
@@ -87,7 +87,7 @@ namespace Pente
         /// <param name="start"></param>
         /// <param name="end"></param>
         /// <returns>bool if the pattern was found</returns>
-        public bool CheckForPattern(Piece[] pattern, bool isSymetrical, ref Vec2 start, ref Vec2 end)
+        public bool CheckForPattern(Vec2 position, Piece[] pattern, bool isSymetrical, ref Vec2 start, ref Vec2 end)
         {
             throw new NotImplementedException();
         }
