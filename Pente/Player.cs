@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pente
 {
-    public abstract class Player
+    public class Player
     {
         public int captures;
         public string name;
