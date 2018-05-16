@@ -48,14 +48,9 @@ namespace PenteTests
             Player p2 = new Player();
 
             //forwards
-            board.Initialize(p1, p2);
+            Board.Vec2 direction = { x = 0, y = 1 };
 
-            for(int i = 0; i < board.Capture.Length; i++)
-            {
-                board.Grid[start.x, start.y + i] = board.Capture[i];
-            }
-
-            board.CheckForCapture(start);
+            BoardCheckForPattern(direction, Board.Capture, board.CheckForCapture);
 
             for(int i = 0; i < successfulCapture.Length; i++)
             {
@@ -76,6 +71,25 @@ namespace PenteTests
             {
                 Assert.AreEqual(successfulCapture[i], board.Grid[start.x, start.y - i]);
             }
+        }
+
+        public delegate bool CheckForDelegate(Board.Vec2 position);
+
+        public bool BoardCheckForPattern(Board.Vec2 direction, Board.Piece[] pattern, CheckForDelegate checkForDelegate)
+        {
+            Board board = new Board();
+            Player p1 = new Player();
+            Player p2 = new Player();
+
+            //forwards
+            board.Initialize(p1, p2);
+
+            for (int i = 0; i < pattern.Length; i++)
+            {
+                board.Grid[start.x + direction.x * i, start.y + direction.x * i] = pattern[i];
+            }
+
+            return checkForDelegate(start);
         }
 
         [TestMethod]
@@ -353,8 +367,6 @@ namespace PenteTests
 
             board.Initialize(p1, p2);
             board.p1.captures = 5;
-
-            Assert
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Pente
         }
 
         /// <summary>
-        /// Initializes the board
+        /// Initializes the board to empty, initializes players, initializes playerPiece to P1
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
@@ -74,7 +74,7 @@ namespace Pente
         /// <summary>
         /// CheckForPattern(Capture) and then remove pieces if capture exists
         /// </summary>
-        public void CheckForCapture(Vec2 position)
+        public bool CheckForCapture(Vec2 position)
         {
             throw new NotImplementedException();
         }
