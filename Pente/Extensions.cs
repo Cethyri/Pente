@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pente
 {
-    static class Extensions
+    public static class Extensions
     {
         public static Board.Piece[] GetPatternFor(this Board.Piece[] pattern, Board.Piece playerPiece)
         {
