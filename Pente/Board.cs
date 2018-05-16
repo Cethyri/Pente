@@ -11,8 +11,7 @@ namespace Pente
         // multiply by P2 to get P2Version
         public readonly Piece[] Capture = { Piece.P1, Piece.P2, Piece.P2, Piece.P1 };
         public readonly Piece[] Tria = { Piece.EMPTY, Piece.P1, Piece.P1, Piece.P1, Piece.EMPTY };
-        public readonly Piece[] TesseraEmptyFirst = { Piece.EMPTY, Piece.P1, Piece.P1, Piece.P1, Piece.P1 };
-        public readonly Piece[] TesseraEmptyLast = { Piece.P1, Piece.P1, Piece.P1, Piece.P1, Piece.EMPTY };
+        public readonly Piece[] Tessera = { Piece.EMPTY, Piece.P1, Piece.P1, Piece.P1, Piece.P1 };
         public readonly Piece[] Win = { Piece.P1, Piece.P1, Piece.P1, Piece.P1, Piece.P1 };
 
         public Piece[,] Grid = new Piece[19,19];
