@@ -40,48 +40,13 @@ namespace PenteTests
             }
         }
 
-        [TestMethod]
-        public void BoardCheckForCapture_Vertical_P1_Test()
-        {
-            Board board = new Board();
-            Player p1 = new Player();
-            Player p2 = new Player();
-
-            //forwards
-            Board.Vec2 direction = { x = 0, y = 1 };
-
-            BoardCheckForPattern(direction, Board.Capture, board.CheckForCapture);
-
-            for(int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x, start.y + i]);
-            }
-
-            //backwards
-            board.Initialize(p1, p2);
-
-            for (int i = 0; i < board.Capture.Length; i++)
-            {
-                board.Grid[start.x, start.y - i] = board.Capture[i];
-            }
-
-            board.CheckForCapture(start);
-
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x, start.y - i]);
-            }
-        }
-
         public delegate bool CheckForDelegate(Board.Vec2 position);
 
-        public bool BoardCheckForPattern(Board.Vec2 direction, Board.Piece[] pattern, CheckForDelegate checkForDelegate)
+        public bool BoardCheckForPattern(ref Board board, Board.Vec2 direction, Board.Piece[] pattern, CheckForDelegate checkForDelegate)
         {
-            Board board = new Board();
             Player p1 = new Player();
             Player p2 = new Player();
 
-            //forwards
             board.Initialize(p1, p2);
 
             for (int i = 0; i < pattern.Length; i++)
@@ -93,150 +58,23 @@ namespace PenteTests
         }
 
         [TestMethod]
-        public void BoardCheckForCapture_Horizontal_P1_Test()
+        public void BoardCheckForCapture_Vertical_P1_Test()
         {
             Board board = new Board();
-            Player p1 = new Player();
-            Player p2 = new Player();
 
             //forwards
-            board.Initialize(p1, p2);
+            Board.Vec2 direction = new Board.Vec2{ x = 0, y = 1 };
 
-            for (int i = 0; i < board.Capture.Length; i++)
-            {
-                board.Grid[start.x + i, start.y] = board.Capture[i];
-            }
+            BoardCheckForPattern(ref board, direction, board.Capture, board.CheckForCapture);
 
-            board.CheckForCapture(start);
-
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x + i, start.y]);
-            }
-
-            //backwards
-            board.Initialize(p1, p2);
-
-            for (int i = 0; i < board.Capture.Length; i++)
-            {
-                board.Grid[start.x - i, start.y] = board.Capture[i];
-            }
-
-            board.CheckForCapture(start);
-
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x - i, start.y]);
-            }
-        }
-
-        [TestMethod]
-        public void BoardCheckForCapture_DiagonalDown_P1_Test()
-        {
-            Board board = new Board();
-            Player p1 = new Player();
-            Player p2 = new Player();
-
-            //forwards
-            board.Initialize(p1, p2);
-
-            for (int i = 0; i < board.Capture.Length; i++)
-            {
-                board.Grid[start.x + i, start.y + i] = board.Capture[i];
-            }
-
-            board.CheckForCapture(start);
-
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x + i, start.y + i]);
-            }
-
-            //backwards
-            board.Initialize(p1, p2);
-
-            for (int i = 0; i < board.Capture.Length; i++)
-            {
-                board.Grid[start.x - i, start.y - i] = board.Capture[i];
-            }
-
-            board.CheckForCapture(start);
-
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x - i, start.y - i]);
-            }
-        }
-
-        [TestMethod]
-        public void BoardCheckForCapture_DiagonalUp_P1_Test()
-        {
-            Board board = new Board();
-            Player p1 = new Player();
-            Player p2 = new Player();
-
-            //forwards
-            board.Initialize(p1, p2);
-
-            for (int i = 0; i < board.Capture.Length; i++)
-            {
-                board.Grid[start.x - i, start.y + i] = board.Capture[i];
-            }
-
-            board.CheckForCapture(start);
-
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x - i, start.y + i]);
-            }
-
-            //backwards
-            board.Initialize(p1, p2);
-
-            for (int i = 0; i < board.Capture.Length; i++)
-            {
-                board.Grid[start.x + i, start.y - i] = board.Capture[i];
-            }
-
-            board.CheckForCapture(start);
-
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x + i, start.y - i]);
-            }
-        }
-
-        [TestMethod]
-        public void BoardCheckForCapture_Vertical_P2_Test()
-        {
-            Board board = new Board();
-            Player p1 = new Player();
-            Player p2 = new Player();
-
-            //forwards
-            board.Initialize(p1, p2);
-
-            for (int i = 0; i < board.Capture.Length; i++)
-            {
-                board.Grid[start.x, start.y + i] = board.Capture[i];
-            }
-
-            board.CheckForCapture(start);
-
-            for (int i = 0; i < successfulCapture.Length; i++)
+            for(int i = 0; i < successfulCapture.Length; i++)
             {
                 Assert.AreEqual(successfulCapture[i], board.Grid[start.x, start.y + i]);
             }
 
             //backwards
-            board.Initialize(p1, p2);
-
-            for (int i = 0; i < board.Capture.Length; i++)
-            {
-                board.Grid[start.x, start.y - i] = board.Capture[i];
-            }
-
-            board.CheckForCapture(start);
+            direction = new Board.Vec2 { x = 0, y = -1 };
+            BoardCheckForPattern(ref board, direction, board.Capture, board.CheckForCapture);
 
             for (int i = 0; i < successfulCapture.Length; i++)
             {
@@ -245,40 +83,127 @@ namespace PenteTests
         }
 
         [TestMethod]
-        public void BoardCheckForCapture_Horizontal_P2_Test()
+        public void BoardCheckForCapture_Horizontal_P1_Test()
         {
             Board board = new Board();
-            Player p1 = new Player();
-            Player p2 = new Player();
 
             //forwards
-            board.Initialize(p1, p2);
+            Board.Vec2 direction = new Board.Vec2 { x = 1, y = 0 };
 
-            for (int i = 0; i < board.Capture.Length; i++)
-            {
-                board.Grid[start.x + i, start.y] = board.Capture[i];
-            }
-
-            board.CheckForCapture(start);
+            BoardCheckForPattern(ref board, direction, board.Capture, board.CheckForCapture);
 
             for (int i = 0; i < successfulCapture.Length; i++)
             {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x + i, start.y]);
+                Assert.AreEqual(successfulCapture[i], board.Grid[start.x, start.y + i]);
             }
 
             //backwards
-            board.Initialize(p1, p2);
-
-            for (int i = 0; i < board.Capture.Length; i++)
-            {
-                board.Grid[start.x - i, start.y] = board.Capture[i];
-            }
-
-            board.CheckForCapture(start);
+            direction = new Board.Vec2 { x = -1, y = 0 };
+            BoardCheckForPattern(ref board, direction, board.Capture, board.CheckForCapture);
 
             for (int i = 0; i < successfulCapture.Length; i++)
             {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x - i, start.y]);
+                Assert.AreEqual(successfulCapture[i], board.Grid[start.x, start.y - i]);
+            }
+        }
+
+        [TestMethod]
+        public void BoardCheckForCapture_DiagonalDown_P1_Test()
+        {
+            Board board = new Board();
+
+            //forwards
+            Board.Vec2 direction = new Board.Vec2 { x = 1, y = 1 };
+
+            BoardCheckForPattern(ref board, direction, board.Capture, board.CheckForCapture);
+
+            for (int i = 0; i < successfulCapture.Length; i++)
+            {
+                Assert.AreEqual(successfulCapture[i], board.Grid[start.x, start.y + i]);
+            }
+
+            //backwards
+            direction = new Board.Vec2 { x = -1, y = -1 };
+            BoardCheckForPattern(ref board, direction, board.Capture, board.CheckForCapture);
+
+            for (int i = 0; i < successfulCapture.Length; i++)
+            {
+                Assert.AreEqual(successfulCapture[i], board.Grid[start.x, start.y - i]);
+            }
+        }
+
+        [TestMethod]
+        public void BoardCheckForCapture_DiagonalUp_P1_Test()
+        {
+            Board board = new Board();
+
+            //forwards
+            Board.Vec2 direction = new Board.Vec2 { x = 1, y = -1 };
+
+            BoardCheckForPattern(ref board, direction, board.Capture, board.CheckForCapture);
+
+            for (int i = 0; i < successfulCapture.Length; i++)
+            {
+                Assert.AreEqual(successfulCapture[i], board.Grid[start.x, start.y + i]);
+            }
+
+            //backwards
+            direction = new Board.Vec2 { x = -1, y = 1 };
+            BoardCheckForPattern(ref board, direction, board.Capture, board.CheckForCapture);
+
+            for (int i = 0; i < successfulCapture.Length; i++)
+            {
+                Assert.AreEqual(successfulCapture[i], board.Grid[start.x, start.y - i]);
+            }
+        }
+
+        [TestMethod]
+        public void BoardCheckForCapture_Vertical_P2_Test()
+        {
+            Board board = new Board();
+
+            //forwards
+            Board.Vec2 direction = new Board.Vec2 { x = 0, y = 1 };
+
+            BoardCheckForPattern(ref board, direction, board.Capture.GetPatternFor(Board.Piece.P2), board.CheckForCapture);
+
+            for (int i = 0; i < successfulCapture.Length; i++)
+            {
+                Assert.AreEqual(successfulCapture[i].Mult(Board.Piece.P2), board.Grid[start.x, start.y + i]);
+            }
+
+            //backwards
+            direction = new Board.Vec2 { x = 0, y = -1 };
+            BoardCheckForPattern(ref board, direction, board.Capture.GetPatternFor(Board.Piece.P2), board.CheckForCapture);
+
+            for (int i = 0; i < successfulCapture.Length; i++)
+            {
+                Assert.AreEqual(successfulCapture[i].Mult(Board.Piece.P2), board.Grid[start.x, start.y - i]);
+            }
+        }
+
+        [TestMethod]
+        public void BoardCheckForCapture_Horizontal_P2_Test()
+        {
+            Board board = new Board();
+
+            //forwards
+            Board.Vec2 direction = new Board.Vec2 { x = 1, y = 0 };
+
+            BoardCheckForPattern(ref board, direction, board.Capture.GetPatternFor(Board.Piece.P2), board.CheckForCapture);
+
+            for (int i = 0; i < successfulCapture.Length; i++)
+            {
+                Assert.AreEqual(successfulCapture[i].Mult(Board.Piece.P2), board.Grid[start.x, start.y + i]);
+            }
+
+            //backwards
+            direction = new Board.Vec2 { x = -1, y = 0 };
+            BoardCheckForPattern(ref board, direction, board.Capture.GetPatternFor(Board.Piece.P2), board.CheckForCapture);
+
+            for (int i = 0; i < successfulCapture.Length; i++)
+            {
+                Assert.AreEqual(successfulCapture[i].Mult(Board.Piece.P2), board.Grid[start.x, start.y - i]);
             }
         }
 
@@ -286,37 +211,24 @@ namespace PenteTests
         public void BoardCheckForCapture_DiagonalDown_P2_Test()
         {
             Board board = new Board();
-            Player p1 = new Player();
-            Player p2 = new Player();
 
             //forwards
-            board.Initialize(p1, p2);
+            Board.Vec2 direction = new Board.Vec2 { x = 1, y = 1 };
 
-            for (int i = 0; i < board.Capture.Length; i++)
-            {
-                board.Grid[start.x + i, start.y + i] = board.Capture[i];
-            }
-
-            board.CheckForCapture(start);
+            BoardCheckForPattern(ref board, direction, board.Capture.GetPatternFor(Board.Piece.P2), board.CheckForCapture);
 
             for (int i = 0; i < successfulCapture.Length; i++)
             {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x + i, start.y + i]);
+                Assert.AreEqual(successfulCapture[i].Mult(Board.Piece.P2), board.Grid[start.x, start.y + i]);
             }
 
             //backwards
-            board.Initialize(p1, p2);
-
-            for (int i = 0; i < board.Capture.Length; i++)
-            {
-                board.Grid[start.x - i, start.y - i] = board.Capture[i];
-            }
-
-            board.CheckForCapture(start);
+            direction = new Board.Vec2 { x = -1, y = -1 };
+            BoardCheckForPattern(ref board, direction, board.Capture.GetPatternFor(Board.Piece.P2), board.CheckForCapture);
 
             for (int i = 0; i < successfulCapture.Length; i++)
             {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x - i, start.y - i]);
+                Assert.AreEqual(successfulCapture[i].Mult(Board.Piece.P2), board.Grid[start.x, start.y - i]);
             }
         }
 
@@ -324,42 +236,29 @@ namespace PenteTests
         public void BoardCheckForCapture_DiagonalUp_P2_Test()
         {
             Board board = new Board();
-            Player p1 = new Player();
-            Player p2 = new Player();
 
             //forwards
-            board.Initialize(p1, p2);
+            Board.Vec2 direction = new Board.Vec2 { x = 1, y = -1 };
 
-            for (int i = 0; i < board.Capture.Length; i++)
-            {
-                board.Grid[start.x - i, start.y + i] = board.Capture[i];
-            }
-
-            board.CheckForCapture(start);
+            BoardCheckForPattern(ref board, direction, board.Capture.GetPatternFor(Board.Piece.P2), board.CheckForCapture);
 
             for (int i = 0; i < successfulCapture.Length; i++)
             {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x - i, start.y + i]);
+                Assert.AreEqual(successfulCapture[i].Mult(Board.Piece.P2), board.Grid[start.x, start.y + i]);
             }
 
             //backwards
-            board.Initialize(p1, p2);
-
-            for (int i = 0; i < board.Capture.Length; i++)
-            {
-                board.Grid[start.x + i, start.y - i] = board.Capture[i];
-            }
-
-            board.CheckForCapture(start);
+            direction = new Board.Vec2 { x = -1, y = 1 };
+            BoardCheckForPattern(ref board, direction, board.Capture.GetPatternFor(Board.Piece.P2), board.CheckForCapture);
 
             for (int i = 0; i < successfulCapture.Length; i++)
             {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x + i, start.y - i]);
+                Assert.AreEqual(successfulCapture[i].Mult(Board.Piece.P2), board.Grid[start.x, start.y - i]);
             }
         }
 
         [TestMethod]
-        public void BoardCheckForWin_FiveCaptures()
+        public void BoardCheckForWin_FiveCaptures_P1_Test()
         {
             Board board = new Board();
             Player p1 = new Player();
@@ -367,6 +266,22 @@ namespace PenteTests
 
             board.Initialize(p1, p2);
             board.p1.captures = 5;
+
+            Assert.IsTrue(board.CheckForWin(start));
+        }
+
+        [TestMethod]
+        public void BoardCheckForWin_FiveCaptures_P2_Test()
+        {
+            Board board = new Board();
+            Player p1 = new Player();
+            Player p2 = new Player();
+
+            board.Initialize(p1, p2);
+            board.currentPlayerPiece = Board.Piece.P2;
+            board.p2.captures = 5;
+
+            Assert.IsTrue(board.CheckForWin(start));
         }
     }
 }
