@@ -16,24 +16,13 @@ using System.Windows.Shapes;
 namespace Pente
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for BoardControl.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class BoardControl : UserControl
     {
-        public MainWindow()
+        public BoardControl()
         {
             InitializeComponent();
-        }
-
-        //PopupWindow for mode, Select mode, true/false for mode select, popup name window, open actual game window
-        public void Start()
-        {
-
-        }
-
-        public void Quit()
-        {
-            Application.Current.Shutdown();
         }
     }
 }
