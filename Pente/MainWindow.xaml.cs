@@ -26,15 +26,14 @@ namespace Pente
         {
             InitializeComponent();
 
-
 		}
 
-		~MainWindow()
-		{
-			if(howToPlayWindow != null)
-			howToPlayWindow.Close();
+		//~MainWindow()
+		//{
+		//	if(howToPlayWindow != null)
+		//	howToPlayWindow.Close();
 
-		}
+		//}
 			
         //PopupWindow for mode, Select mode, true/false for mode select, popup name window, open actual game window
         public void Start()
