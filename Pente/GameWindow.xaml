@@ -7,6 +7,15 @@
         mc:Ignorable="d"
         Title="GameWindow" Height="150" Width="280">
     <Grid>
-        <local:PieceControl></local:PieceControl>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="25*"/>
+
+        </Grid.ColumnDefinitions>
+        
+        <local:PlayerControl x:Name="Player1" Grid.Column="0"/>
+        <local:BoardControl x:Name="BoardControl" Grid.Column="1"/>
+        <local:PlayerControl x:Name="Player2" Grid.Column="2"/>
     </Grid>
 </Window>
