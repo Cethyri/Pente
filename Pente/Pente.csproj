@@ -79,6 +79,7 @@
       <DependentUpon>BoardControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Computer.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>

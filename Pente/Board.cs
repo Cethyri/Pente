@@ -11,8 +11,7 @@ namespace Pente
         // multiply by P2 to get P2Version
         public readonly Piece[] Capture = { Piece.P1, Piece.P2, Piece.P2, Piece.P1 };
         public readonly Piece[] Tria = { Piece.EMPTY, Piece.P1, Piece.P1, Piece.P1, Piece.EMPTY };
-        public readonly Piece[] TesseraEmptyFirst = { Piece.EMPTY, Piece.P1, Piece.P1, Piece.P1, Piece.P1 };
-        public readonly Piece[] TesseraEmptyLast = { Piece.P1, Piece.P1, Piece.P1, Piece.P1, Piece.EMPTY };
+        public readonly Piece[] Tessera = { Piece.EMPTY, Piece.P1, Piece.P1, Piece.P1, Piece.P1 };
         public readonly Piece[] Win = { Piece.P1, Piece.P1, Piece.P1, Piece.P1, Piece.P1 };
 
         public Piece[,] Grid = new Piece[19,19];
@@ -36,7 +35,7 @@ namespace Pente
         }
 
         /// <summary>
-        /// Initializes the board
+        /// Initializes the board to empty, initializes players, initializes playerPiece to P1
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
@@ -46,7 +45,16 @@ namespace Pente
         }
 
         /// <summary>
-        /// Check all Patterns, switch currentPlayerPiece, if currentPlayerPiece is P2 and p2 is type computer call PlacePiece(p2.takeTurn())
+        /// checks validity of placement
+        /// </summary>
+        /// <param name="position"></param>
+        public bool IsValidPlacement(Vec2 position)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Placce Piece on board, Check all Patterns, switch currentPlayerPiece, if currentPlayerPiece is P2 and p2 is type computer call PlacePiece(p2.takeTurn())
         /// </summary>
         /// <param name="position"></param>
         public void PlacePiece(Vec2 position)
@@ -58,7 +66,7 @@ namespace Pente
         /// CheckForPattern(Win) or currentPlayer captures >= 5
         /// </summary>
         /// <returns></returns>
-        public bool CheckForWin()
+        public bool CheckForWin(Vec2 position)
         {
             throw new NotImplementedException();
         }
@@ -66,7 +74,7 @@ namespace Pente
         /// <summary>
         /// CheckForPattern(Capture) and then remove pieces if capture exists
         /// </summary>
-        public void CheckForCapture()
+        public bool CheckForCapture(Vec2 position)
         {
             throw new NotImplementedException();
         }
@@ -78,7 +86,7 @@ namespace Pente
         /// <param name="start"></param>
         /// <param name="end"></param>
         /// <returns>bool if the pattern was found</returns>
-        public bool CheckForPattern(Piece[] pattern, ref Vec2 start, ref Vec2 end)
+        public bool CheckForPattern(Vec2 position, Piece[] pattern, bool isSymetrical, ref Vec2 start, ref Vec2 end)
         {
             throw new NotImplementedException();
         }
