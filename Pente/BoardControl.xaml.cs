@@ -20,9 +20,32 @@ namespace Pente
     /// </summary>
     public partial class BoardControl : UserControl
     {
+        Board board = new Board();
+
         public BoardControl()
         {
             InitializeComponent();
+        }
+
+        public void InitializeBoard(Player P1, Player P2)
+        {
+            board.Initialize(P1, P2);
+
+            for(int y = 0; y < board.Grid.GetLength(1); y++)
+            {
+                for (int x = 0; x < board.Grid.GetLength(0); x++)
+                {
+                    PieceControl piece = new PieceControl(new Board.Vec2 { x = x, y = y });
+                    Binding b = new Binding("State")
+                    {
+                        Mode = BindingMode.OneWay,
+                        Converter = new PlayerPieceToImageConverter()
+                    };
+
+
+                //ugrdGrid.Children.Add();
+                }
+            }
         }
     }
 }
