@@ -5,8 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Pente"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="800">
-    <UniformGrid Name="ugrdGrid" Columns="19" Rows="19">
-        
+             MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+             MinHeight="{Binding ActualWidth, RelativeSource={RelativeSource Self}}">
+    <UniformGrid Name="ugrdGrid" Columns="19" Rows="19" Margin="0" Background="DarkGreen">
+
     </UniformGrid>
 </UserControl>
