@@ -11,7 +11,7 @@
     </UserControl.Resources>
     <Grid>
         <Button>
-            <Image Source="{Binding State, Mode=OneWay, Converter={StaticResource pieceToImage}}"></Image>
+            <Image Source="{Binding ImagePath}"></Image>
         </Button>
     </Grid>
 </UserControl>

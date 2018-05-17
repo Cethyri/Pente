@@ -25,5 +25,15 @@ namespace Pente
         {
             return (Board.Piece)((int)left * (int)right);
         }
+
+        public static Board.Piece Get(this Board.Piece[,] Grid, Board.Vec2 position)
+        {
+            if (position.x >= 0 && position.x < Grid.GetLength(0) && position.y >= 0 && position.y < Grid.GetLength(1))
+            {
+                return Grid[position.x, position.y];
+            }
+
+            return Board.Piece.EMPTY;
+        }
     }
 }

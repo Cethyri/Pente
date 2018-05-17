@@ -21,8 +21,28 @@ namespace Pente
     public partial class PieceControl : UserControl
     {
         public Board.Vec2 Position { get; private set; }
-        public Board.Piece State { get { return Board.Piece.EMPTY; } } // need to access Board instance and set grid[position] state
+        public string ImagePath { get {
 
+
+                string imagePath = "Images/";
+
+                switch (Manager.instance.board.Grid.Get(Position))
+                {
+                    case Board.Piece.P1:
+                        imagePath += "P1";
+                        break;
+                    case Board.Piece.P2:
+                        imagePath += "P2";
+                        break;
+                    case Board.Piece.EMPTY:
+                        imagePath += "Empty";
+                        break;
+                }
+
+                imagePath += ".png";
+
+                return imagePath;
+            } }
         public PieceControl(Board.Vec2 position)
         {
             InitializeComponent();
