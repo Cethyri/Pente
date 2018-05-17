@@ -21,13 +21,18 @@ namespace Pente
     public partial class PieceControl : UserControl
     {
         public Board.Vec2 Position { get; private set; }
-        public Board.Piece State { get; set; } // need to access Board instance and set grid[position] state
+        public Board.Piece State { get { return Board.Piece.EMPTY; } } // need to access Board instance and set grid[position] state
 
         public PieceControl(Board.Vec2 position)
         {
             InitializeComponent();
 
             Position = position;
+        }
+
+        public PieceControl()
+        {
+            InitializeComponent();
         }
     }
 }

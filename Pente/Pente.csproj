@@ -90,6 +90,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ModeSelect.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="PieceControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,6 +104,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Manager.cs" />
+    <Compile Include="ModeSelect.xaml.cs">
+      <DependentUpon>ModeSelect.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PieceControl.xaml.cs">
       <DependentUpon>PieceControl.xaml</DependentUpon>
     </Compile>
@@ -134,9 +142,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\BlackPiece.png" />
     <Resource Include="Images\Empty.png" />
-    <Resource Include="Images\WhitePiece.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\P1.png" />
+    <Resource Include="Images\P2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
