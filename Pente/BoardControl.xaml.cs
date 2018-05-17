@@ -27,9 +27,9 @@ namespace Pente
             InitializeComponent();
         }
 
-        public void InitializeBoard(Player P1, Player P2)
+        public void InitializeBoard(/*Player P1, Player P2*/)
         {
-            board.Initialize(P1, P2);
+            board.Initialize(Manager.instance.p1, Manager.instance.p2);
 
             for(int y = 0; y < board.Grid.GetLength(1); y++)
             {
@@ -43,7 +43,7 @@ namespace Pente
                     };
 
 
-                //ugrdGrid.Children.Add();
+                    ugrdGrid.Children.Add(piece);
                 }
             }
         }

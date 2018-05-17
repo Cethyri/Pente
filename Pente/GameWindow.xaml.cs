@@ -24,6 +24,7 @@ namespace Pente
 		{
 			parent = window;
 			InitializeComponent();
+            BoardControl.InitializeBoard();
 		}
 		//~GameWindow()
 		//{
