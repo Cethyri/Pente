@@ -50,7 +50,7 @@ namespace Pente
         /// <param name="position"></param>
         public bool IsValidPlacement(Vec2 position)
         {
-            throw new NotImplementedException();
+            return Grid[position.x, position.y].Equals(Piece.EMPTY);
         }
 
         /// <summary>
@@ -59,7 +59,11 @@ namespace Pente
         /// <param name="position"></param>
         public void PlacePiece(Vec2 position)
         {
-
+            if (IsValidPlacement(position))
+            {
+                Grid[position.x, position.y] = currentPlayerPiece;
+                currentPlayerPiece = currentPlayerPiece.Mult(Piece.P2);
+            }
         }
 
         /// <summary>
