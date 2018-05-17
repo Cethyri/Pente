@@ -32,7 +32,6 @@ namespace Pente
 		//}
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			
             parent.Visibility = Visibility.Visible;
         }
 	}

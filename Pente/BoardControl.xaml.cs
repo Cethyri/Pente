@@ -36,12 +36,7 @@ namespace Pente
                 for (int x = 0; x < board.Grid.GetLength(0); x++)
                 {
                     PieceControl piece = new PieceControl(new Board.Vec2 { x = x, y = y });
-                    Binding b = new Binding("State")
-                    {
-                        Mode = BindingMode.OneWay,
-                        Converter = new PlayerPieceToImageConverter()
-                    };
-
+                    piece.DataContext = piece;
 
                     ugrdGrid.Children.Add(piece);
                 }

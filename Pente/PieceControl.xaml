@@ -10,8 +10,8 @@
         <local:PlayerPieceToImageConverter x:Key="pieceToImage"/>
     </UserControl.Resources>
     <Grid>
-        <Button>
-            <Image Source="{Binding ImagePath}"></Image>
+        <Button Name="bttn" Click="Button_Click" BorderThickness="0">
+            <Image Name="imgNotWorking" Source="{Binding Path=ImagePath, Mode=OneWay}"></Image>
         </Button>
     </Grid>
 </UserControl>

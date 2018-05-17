@@ -29,7 +29,10 @@ namespace Pente
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            parent.Visibility = Visibility.Visible;
+            if (this.Visibility != Visibility.Hidden)
+            {
+                parent.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnPVP_Click(object sender, RoutedEventArgs e)
@@ -55,7 +58,7 @@ namespace Pente
             {
                 Manager.instance.p1.name = txtboxP1.Text;
             }
-            if (txtboxP2.Text  == "")
+            if (txtboxP2.Text == "")
             {
                 Manager.instance.p2.name = "Player 2";
             }

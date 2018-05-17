@@ -54,5 +54,11 @@ namespace Pente
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.instance.board.PlacePiece(Position);
+            imgNotWorking.Source = new BitmapImage(new Uri(ImagePath));
+        }
     }
 }
