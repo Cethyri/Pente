@@ -25,13 +25,14 @@ namespace Pente
 			parent = window;
 			InitializeComponent();
 		}
-		~GameWindow()
-		{
-			parent.Visibility = Visibility.Visible;
-		}
+		//~GameWindow()
+		//{
+		//	parent.Visibility = Visibility.Visible;
+		//}
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			e.Cancel = true;
-		}
+			
+            parent.Visibility = Visibility.Visible;
+        }
 	}
 }

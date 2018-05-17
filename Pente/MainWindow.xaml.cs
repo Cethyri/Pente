@@ -22,24 +22,23 @@ namespace Pente
     {
 		HowToPlay howToPlayWindow;
 		GameWindow gameWindow;
+        ModeSelect modeSelect;
         public MainWindow()
         {
             InitializeComponent();
-
-
+            Manager.CreateNewManager();
 		}
 
-		~MainWindow()
-		{
-			if(howToPlayWindow != null)
-			howToPlayWindow.Close();
+        public void NewGame()
+        {
+            gameWindow = new GameWindow(this);
+            gameWindow.Show();
+        }
 
-		}
-			
         //PopupWindow for mode, Select mode, true/false for mode select, popup name window, open actual game window
         public void Start()
         {
-
+            //Do we still need this?
 		}
 
 		public void Quit()
@@ -49,9 +48,14 @@ namespace Pente
 
 		private void btnPlay_Click(object sender, RoutedEventArgs e)
 		{
-			gameWindow = new GameWindow(this);
-			this.Hide();
-			gameWindow.Show();
+            //gameWindow = new GameWindow(this);
+            //this.Hide();
+            //gameWindow.Show();
+
+            modeSelect = new ModeSelect(this);
+            this.Hide();
+            modeSelect.Show();
+
 		}
 
 		private void btnHowToPlay_Click(object sender, RoutedEventArgs e)
