@@ -10,6 +10,7 @@ namespace PenteTests
         private readonly Board.Piece[] successfulCapture = { Board.Piece.P1, Board.Piece.EMPTY, Board.Piece.EMPTY, Board.Piece.P1 };
         private Board.Vec2 start = new Board.Vec2 { x = 9, y = 9 };
 
+        #region Initialize Tests
         [TestMethod]
         public void BoardInitialize_Players_Test()
         {
@@ -39,7 +40,9 @@ namespace PenteTests
                 }
             }
         }
+        #endregion
 
+        #region Capture Checks
         public delegate bool CheckForDelegate(Board.Vec2 position);
 
         public bool BoardCheckForPattern(ref Board board, Board.Vec2 direction, Board.Piece[] pattern, Board.Piece playerPiece, CheckForDelegate checkForDelegate)
@@ -252,7 +255,9 @@ namespace PenteTests
                 Assert.AreEqual(successfulCapture[i].Mult(Board.Piece.P2), board.Grid[start.x, start.y - i]);
             }
         }
+        #endregion
 
+        #region Win Checks
         [TestMethod]
         public void BoardCheckForWin_FiveCaptures_P1_Test()
         {
@@ -391,5 +396,6 @@ namespace PenteTests
             direction = new Board.Vec2 { x = -1, y = 1 };
             BoardCheckForPattern(ref board, direction, board.Win, Board.Piece.P2, board.CheckForWin);
         }
+        #endregion
     }
 }
