@@ -1,0 +1,63 @@
+﻿<Window x:Class="Pente.ModeSelect"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pente"
+        mc:Ignorable="d" 
+        Closing="Window_Closing"
+        Title="ModeSelect" Height="450" Width="600">
+    <Grid x:Name="BigGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="lilGrid" Grid.Row="3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
+            <Button x:Name="btnPVP" Content="2 players" Grid.Column="3" FontFamily="Comic Sans MS" Click="btnPVP_Click"/>
+            <Button x:Name="btnPVE" Content="1 player" Grid.Column="1" FontFamily="Comic Sans MS" Click="btnPVE_Click"/>
+
+        </Grid>
+        <TextBlock x:Name="Title" Text="How many players are playing?" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontFamily="Comic Sans MS"/>
+
+        <TextBlock x:Name="Names" Text="What are the names of your players" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontFamily="Comic Sans MS"/>
+
+        <Grid x:Name="OtherGrid" Grid.Row="7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="txtboxP1" Text="Player 1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+            <TextBox x:Name="txtboxP2" Text="Player 2" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+            <Label x:Name="lblP1" Content="Player 1's name" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="12" FontFamily="Comic Sans MS"/>
+            <Label x:Name="lblP2" Content="Player 2's name" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="12" FontFamily="Comic Sans MS"/>
+        </Grid>
+        <Grid x:Name="lastName" Grid.Row="9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="50*"/>
+
+            </Grid.ColumnDefinitions>
+        <Button x:Name="Submit" Content="Submit" Grid.Column="1" Click="Submit_Click"/>
+        </Grid>
+
+    </Grid>
+</Window>
