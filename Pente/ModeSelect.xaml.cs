@@ -68,6 +68,8 @@ namespace Pente
                 Manager.instance.p2.name = txtboxP2.Text;
             }
 
+            //Manager.instance.board.Initialize();
+
             parent.NewGame();
             this.Hide();
         }
