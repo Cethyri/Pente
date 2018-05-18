@@ -1,12 +1,13 @@
-﻿<Window x:Class="Pente.ModeSelect"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Pente"
-        mc:Ignorable="d" 
-        Closing="Window_Closing"
-        Title="ModeSelect" Height="450" Width="600">
+﻿<Page x:Class="Pente.ModePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Pente"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ModePage">
+
     <Grid x:Name="BigGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="25*"/>
@@ -21,13 +22,13 @@
             <RowDefinition Height="25*"/>
         </Grid.RowDefinitions>
         <Grid x:Name="lilGrid" Grid.Row="3">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="25*"/>
-        </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
             <Button x:Name="btnPVP" Content="2 players" Grid.Column="3" FontFamily="Comic Sans MS" Click="btnPVP_Click"/>
             <Button x:Name="btnPVE" Content="1 player" Grid.Column="1" FontFamily="Comic Sans MS" Click="btnPVE_Click"/>
 
@@ -56,8 +57,8 @@
                 <ColumnDefinition Width="50*"/>
 
             </Grid.ColumnDefinitions>
-        <Button x:Name="Submit" Content="Submit" Grid.Column="1" Click="Submit_Click"/>
+            <Button x:Name="Submit" Content="Submit" Grid.Column="1" Click="Submit_Click" Margin="10"/>
         </Grid>
 
     </Grid>
-</Window>
+</Page>
