@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace Pente
 {
+    public enum Piece
+    {
+        P1 = 1,
+        P2 = -1,
+        EMPTY = 0
+    }
+
     public class Board
     {
         // multiply by P2 to get P2Version
@@ -20,19 +27,6 @@ namespace Pente
         public Player p2;
 
         public Piece currentPlayerPiece = Piece.P1;
-
-        public struct Vec2
-        {
-            public int x;
-            public int y;
-        }
-
-        public enum Piece
-        {
-            P1 = 1,
-            P2 = -1,
-            EMPTY = 0
-        }
 
         /// <summary>
         /// Initializes the board to empty, initializes players, initializes playerPiece to P1
@@ -93,6 +87,26 @@ namespace Pente
         public bool CheckForPattern(Vec2 position, Piece[] pattern, bool isSymetrical, ref Vec2 start, ref Vec2 end)
         {
             throw new NotImplementedException();
+
+            Vec2 direction = new Vec2(1, 0);
+
+            int startX = (position.x - (pattern.Length - 1)).Clamp(0, Grid.GetLength(0));
+            int startY = (position.y - (pattern.Length - 1)).Clamp(0, Grid.GetLength(1));
+
+            int endX = (position.x + (pattern.Length)).Clamp(0, Grid.GetLength(0));
+            int endY = (position.y + (pattern.Length)).Clamp(0, Grid.GetLength(1));
+
+            int startValue = Math.Max(position.x - startX, position.y - startY);
+
+            for (int j = 0; j < 0; j++)
+            {
+                for (int i = 0; i < pattern.Length; i++)
+                {
+
+                }
+            }
+
+            return false;
         }
     }
 }
