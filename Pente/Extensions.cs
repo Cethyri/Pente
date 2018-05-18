@@ -35,5 +35,13 @@ namespace Pente
 
             return Board.Piece.EMPTY;
         }
+
+        public static void Set(this Board.Piece[,] Grid, Board.Vec2 position, Board.Piece piece)
+        {
+            if (position.x >= 0 && position.x < Grid.GetLength(0) && position.y >= 0 && position.y < Grid.GetLength(1))
+            {
+                Grid[position.x, position.y] = piece;
+            }
+        }
     }
 }
