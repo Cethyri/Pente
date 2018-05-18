@@ -92,7 +92,7 @@ namespace Pente
         /// <returns>bool if the pattern was found</returns>
         public bool CheckForPattern(Vec2 position, Piece[] pattern, bool isSymetrical, ref Vec2 start, ref Vec2 end)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < )
         }
     }
 }
