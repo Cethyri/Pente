@@ -20,7 +20,7 @@ namespace Pente
     /// </summary>
     public partial class PieceControl : UserControl
     {
-        public Board.Vec2 Position { get; private set; }
+        public Vec2 Position { get; private set; }
         public string ImagePath { get {
 
 
@@ -28,13 +28,13 @@ namespace Pente
 
                 switch (Manager.instance.board.Grid.Get(Position))
                 {
-                    case Board.Piece.P1:
+                    case Piece.P1:
                         imagePath += "P1";
                         break;
-                    case Board.Piece.P2:
+                    case Piece.P2:
                         imagePath += "P2";
                         break;
-                    case Board.Piece.EMPTY:
+                    case Piece.EMPTY:
                         imagePath += "Empty";
                         break;
                 }
@@ -43,7 +43,7 @@ namespace Pente
 
                 return imagePath;
             } }
-        public PieceControl(Board.Vec2 position)
+        public PieceControl(Vec2 position)
         {
             InitializeComponent();
 

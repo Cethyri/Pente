@@ -8,9 +8,9 @@ namespace Pente
 {
     public static class Extensions
     {
-        public static Board.Piece[] GetPatternFor(this Board.Piece[] pattern, Board.Piece playerPiece)
+        public static Piece[] GetPatternFor(this Piece[] pattern, Piece playerPiece)
         {
-            Board.Piece[] newPattern = new Board.Piece[pattern.Length];
+            Piece[] newPattern = new Piece[pattern.Length];
             pattern.CopyTo(newPattern, 0);
 
             for (int i = 0; i < newPattern.Length; i++)
@@ -21,27 +21,32 @@ namespace Pente
             return newPattern;
         }
 
-        public static Board.Piece Mult(this Board.Piece left, Board.Piece right)
+        public static Piece Mult(this Piece left, Piece right)
         {
-            return (Board.Piece)((int)left * (int)right);
+            return (Piece)((int)left * (int)right);
         }
 
-        public static Board.Piece Get(this Board.Piece[,] Grid, Board.Vec2 position)
+        public static Piece Get(this Piece[,] Grid, Vec2 position)
         {
             if (position.x >= 0 && position.x < Grid.GetLength(0) && position.y >= 0 && position.y < Grid.GetLength(1))
             {
                 return Grid[position.x, position.y];
             }
 
-            return Board.Piece.EMPTY;
+            return Piece.EMPTY;
         }
 
-        public static void Set(this Board.Piece[,] Grid, Board.Vec2 position, Board.Piece piece)
+        public static void Set(this Piece[,] Grid, Vec2 position, Piece piece)
         {
             if (position.x >= 0 && position.x < Grid.GetLength(0) && position.y >= 0 && position.y < Grid.GetLength(1))
             {
                 Grid[position.x, position.y] = piece;
             }
+        }
+
+        public static int Clamp(this int value, int min, int max)
+        {
+            return value < min ? min : value > max ? max : value;
         }
     }
 }

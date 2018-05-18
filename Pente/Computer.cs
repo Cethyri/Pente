@@ -8,7 +8,7 @@ namespace Pente
 {
     public class Computer : Player
     {
-        public Board.Vec2 TakeTurn()
+        public Vec2 TakeTurn()
         {
             throw new NotImplementedException();
         }

@@ -9,19 +9,19 @@ namespace Pente
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Board.Piece piece = (Board.Piece)value;
+            Piece piece = (Piece)value;
 
             string imagePath = "Images/";
 
             switch (piece)
             {
-                case Board.Piece.P1:
+                case Piece.P1:
                     imagePath += "P1";
                     break;
-                case Board.Piece.P2:
+                case Piece.P2:
                     imagePath += "P2";
                     break;
-                case Board.Piece.EMPTY:
+                case Piece.EMPTY:
                     imagePath += "Empty";
                     break;
             }

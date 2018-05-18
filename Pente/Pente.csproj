@@ -78,6 +78,7 @@
     <Compile Include="BoardControl.xaml.cs">
       <DependentUpon>BoardControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vec2.cs" />
     <Compile Include="Computer.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GameWindow.xaml.cs">
