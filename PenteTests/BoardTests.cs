@@ -40,6 +40,26 @@ namespace PenteTests
                 }
             }
         }
+
+        [TestMethod]
+        public void BoardInitialize_Grid_ReInit_Test()
+        {
+            Board board = new Board();
+            Player p1 = new Player();
+            Player p2 = new Player();
+
+            board.Grid[start.x, start.y] = Board.Piece.P1;
+
+            board.Initialize(p1, p2);
+
+            for (int i = 0; i < board.Grid.GetLength(0); i++)
+            {
+                for (int j = 0; j < board.Grid.GetLength(1); j++)
+                {
+                    Assert.AreEqual(Board.Piece.EMPTY, board.Grid[i, j]);
+                }
+            }
+        }
         #endregion
 
         #region Capture Checks
