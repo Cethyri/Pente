@@ -21,7 +21,7 @@ namespace Pente
         public readonly Piece[] Tessera = { Piece.EMPTY, Piece.P1, Piece.P1, Piece.P1, Piece.P1 };
         public readonly Piece[] Win = { Piece.P1, Piece.P1, Piece.P1, Piece.P1, Piece.P1 };
 
-        public Piece[,] Grid = new Piece[19,19];
+        public Piece[,] Grid = new Piece[19, 19];
 
         public Player p1;
         public Player p2;
@@ -76,37 +76,56 @@ namespace Pente
         {
             throw new NotImplementedException();
         }
-        
+
         /// <summary>
         /// checks for pattern in the row, column, and both diagonals of the placed piece
         /// </summary>
         /// <param name="pattern"></param>
-        /// <param name="start"></param>
-        /// <param name="end"></param>
+        /// <param name="startOfPattern"></param>
+        /// <param name="endOfPattern"></param>
         /// <returns>bool if the pattern was found</returns>
-        public bool CheckForPattern(Vec2 position, Piece[] pattern, bool isSymetrical, ref Vec2 start, ref Vec2 end)
+        public bool CheckForPattern(Vec2 position, Piece[] pattern, bool isSymetrical, ref Vec2 startOfPattern, ref Vec2 endOfPattern)
         {
-            throw new NotImplementedException();
-
             Vec2 direction = new Vec2(1, 0);
 
-            int startX = (position.x - (pattern.Length - 1)).Clamp(0, Grid.GetLength(0));
-            int startY = (position.y - (pattern.Length - 1)).Clamp(0, Grid.GetLength(1));
+            Vec2 startPosition = position - (direction * (pattern.Length - 1));
+            Vec2 endPosition = position + (direction * (pattern.Length - 1));
 
-            int endX = (position.x + (pattern.Length)).Clamp(0, Grid.GetLength(0));
-            int endY = (position.y + (pattern.Length)).Clamp(0, Grid.GetLength(1));
+            startPosition.Clamp(0, Grid.GetLength(0));
+            endPosition.Clamp(0, Grid.GetLength(0));
 
-            int startValue = Math.Max(position.x - startX, position.y - startY);
+            int startValue = Math.Max(startPosition.x - position.x, startPosition.y - position.y);
+            int endValue = Math.Min(endPosition.x - position.x, endPosition.y - position.y) - pattern.Length;
 
-            for (int j = 0; j < 0; j++)
+            Vec2 positionToCheck;
+
+            bool hasFoundPattern = true;
+
+            for (int shift = startValue; shift <= endValue; shift++)
             {
+                hasFoundPattern = true;
+
+                startOfPattern = position + (direction * shift);
+                endOfPattern = position + (direction * (shift + pattern.Length - 1));
+
                 for (int i = 0; i < pattern.Length; i++)
                 {
+                    positionToCheck = position + (direction * (shift + i));
 
+                    if (Grid.Get(positionToCheck) != pattern[i])
+                    {
+                        hasFoundPattern = false;
+                        break;
+                    }
+                }
+
+                if (hasFoundPattern)
+                {
+                    break;
                 }
             }
 
-            return false;
+            return hasFoundPattern;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace PenteTests
     public class BoardTests
     {
         private readonly Piece[] successfulCapture = { Piece.P1, Piece.EMPTY, Piece.EMPTY, Piece.P1 };
-        private Vec2 start = new Vec2 { x = 9, y = 9 };
+        private Vec2 start = new Vec2(9, 9);
 
         #region Initialize Tests
         [TestMethod]
@@ -48,7 +48,7 @@ namespace PenteTests
             Player p1 = new Player();
             Player p2 = new Player();
 
-            board.Grid[start.x, start.y] = Board.Piece.P1;
+            board.Grid.Set(start, Piece.P1);
 
             board.Initialize(p1, p2);
 
@@ -56,7 +56,7 @@ namespace PenteTests
             {
                 for (int j = 0; j < board.Grid.GetLength(1); j++)
                 {
-                    Assert.AreEqual(Board.Piece.EMPTY, board.Grid[i, j]);
+                    Assert.AreEqual(Piece.EMPTY, board.Grid[i, j]);
                 }
             }
         }
@@ -65,7 +65,7 @@ namespace PenteTests
         #region Capture Checks
         public delegate bool CheckForDelegate(Vec2 position);
 
-        public bool BoardCheckForPattern(ref Board board, Vec2 direction, Piece[] pattern, Piece playerPiece, CheckForDelegate checkForDelegate)
+        public bool BoardTestCheckForPatternMethod(ref Board board, Vec2 direction, Piece[] pattern, Piece playerPiece, CheckForDelegate checkForDelegate)
         {
             Player p1 = new Player();
             Player p2 = new Player();
@@ -77,10 +77,18 @@ namespace PenteTests
 
             for (int i = 0; i < pattern.Length; i++)
             {
-                board.Grid[start.x + direction.x * i, start.y + direction.x * i] = pattern[i];
+                board.Grid.Set(start + direction * i, pattern[i]);
             }
 
             return checkForDelegate(start);
+        }
+        
+        private void PatternExists(Board board, Vec2 direction, Piece[] patternToFind)
+        {
+            for (int i = 0; i < patternToFind.Length; i++)
+            {
+                Assert.AreEqual(patternToFind[i], board.Grid.Get(start + direction * i));
+            }
         }
 
         [TestMethod]
@@ -90,21 +98,14 @@ namespace PenteTests
 
             //forwards
             Vec2 direction = new Vec2 { x = 0, y = 1 };
-            BoardCheckForPattern(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
+            BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
 
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x, start.y + i]);
-            }
+            PatternExists(board, direction, successfulCapture);
 
             //backwards
-            direction = new Vec2 { x = 0, y = -1 };
-            BoardCheckForPattern(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
+            BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P1, board.CheckForCapture);
 
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x, start.y - i]);
-            }
+            PatternExists(board, direction, successfulCapture);
         }
 
         [TestMethod]
@@ -114,21 +115,14 @@ namespace PenteTests
 
             //forwards
             Vec2 direction = new Vec2 { x = 1, y = 0 };
-            BoardCheckForPattern(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
+            BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
 
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x, start.y + i]);
-            }
+            PatternExists(board, direction, successfulCapture);
 
             //backwards
-            direction = new Vec2 { x = -1, y = 0 };
-            BoardCheckForPattern(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
+            BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P1, board.CheckForCapture);
 
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x, start.y - i]);
-            }
+            PatternExists(board, direction, successfulCapture);
         }
 
         [TestMethod]
@@ -138,21 +132,14 @@ namespace PenteTests
 
             //forwards
             Vec2 direction = new Vec2 { x = 1, y = 1 };
-            BoardCheckForPattern(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
+            BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
 
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x, start.y + i]);
-            }
+            PatternExists(board, direction, successfulCapture);
 
             //backwards
-            direction = new Vec2 { x = -1, y = -1 };
-            BoardCheckForPattern(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
+            BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P1, board.CheckForCapture);
 
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x, start.y - i]);
-            }
+            PatternExists(board, direction, successfulCapture);
         }
 
         [TestMethod]
@@ -162,21 +149,14 @@ namespace PenteTests
 
             //forwards
             Vec2 direction = new Vec2 { x = 1, y = -1 };
-            BoardCheckForPattern(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
+            BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
 
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x, start.y + i]);
-            }
+            PatternExists(board, direction, successfulCapture);
 
             //backwards
-            direction = new Vec2 { x = -1, y = 1 };
-            BoardCheckForPattern(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
+            BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P1, board.CheckForCapture);
 
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i], board.Grid[start.x, start.y - i]);
-            }
+            PatternExists(board, direction, successfulCapture);
         }
 
         [TestMethod]
@@ -186,21 +166,14 @@ namespace PenteTests
 
             //forwards
             Vec2 direction = new Vec2 { x = 0, y = 1 };
-            BoardCheckForPattern(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
+            BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
 
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i].Mult(Piece.P2), board.Grid[start.x, start.y + i]);
-            }
+            PatternExists(board, direction, successfulCapture);
 
             //backwards
-            direction = new Vec2 { x = 0, y = -1 };
-            BoardCheckForPattern(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
+            BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P2, board.CheckForCapture);
 
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i].Mult(Piece.P2), board.Grid[start.x, start.y - i]);
-            }
+            PatternExists(board, direction, successfulCapture);
         }
 
         [TestMethod]
@@ -210,21 +183,14 @@ namespace PenteTests
 
             //forwards
             Vec2 direction = new Vec2 { x = 1, y = 0 };
-            BoardCheckForPattern(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
+            BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
 
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i].Mult(Piece.P2), board.Grid[start.x, start.y + i]);
-            }
+            PatternExists(board, direction, successfulCapture);
 
             //backwards
-            direction = new Vec2 { x = -1, y = 0 };
-            BoardCheckForPattern(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
+            BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P2, board.CheckForCapture);
 
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i].Mult(Piece.P2), board.Grid[start.x, start.y - i]);
-            }
+            PatternExists(board, direction, successfulCapture);
         }
 
         [TestMethod]
@@ -234,21 +200,14 @@ namespace PenteTests
 
             //forwards
             Vec2 direction = new Vec2 { x = 1, y = 1 };
-            BoardCheckForPattern(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
+            BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
 
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i].Mult(Piece.P2), board.Grid[start.x, start.y + i]);
-            }
+            PatternExists(board, direction, successfulCapture);
 
             //backwards
-            direction = new Vec2 { x = -1, y = -1 };
-            BoardCheckForPattern(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
+            BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P2, board.CheckForCapture);
 
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i].Mult(Piece.P2), board.Grid[start.x, start.y - i]);
-            }
+            PatternExists(board, direction, successfulCapture);
         }
 
         [TestMethod]
@@ -259,21 +218,14 @@ namespace PenteTests
             //forwards
             Vec2 direction = new Vec2 { x = 1, y = -1 };
 
-            BoardCheckForPattern(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
+            BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
 
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i].Mult(Piece.P2), board.Grid[start.x, start.y + i]);
-            }
+            PatternExists(board, direction, successfulCapture);
 
             //backwards
-            direction = new Vec2 { x = -1, y = 1 };
-            BoardCheckForPattern(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
+            BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P2, board.CheckForCapture);
 
-            for (int i = 0; i < successfulCapture.Length; i++)
-            {
-                Assert.AreEqual(successfulCapture[i].Mult(Piece.P2), board.Grid[start.x, start.y - i]);
-            }
+            PatternExists(board, direction, successfulCapture);
         }
         #endregion
 
@@ -312,11 +264,10 @@ namespace PenteTests
 
             //forwards
             Vec2 direction = new Vec2 { x = 0, y = 1 };
-            BoardCheckForPattern(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
+            BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
 
             //backwards
-            direction = new Vec2 { x = 0, y = -1 };
-            BoardCheckForPattern(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
+            BoardTestCheckForPatternMethod(ref board, -direction, board.Win, Piece.P1, board.CheckForWin);
         }
 
         [TestMethod]
@@ -326,11 +277,10 @@ namespace PenteTests
 
             //forwards
             Vec2 direction = new Vec2 { x = 1, y = 0 };
-            BoardCheckForPattern(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
+            BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
 
             //backwards
-            direction = new Vec2 { x = -1, y = 0 };
-            BoardCheckForPattern(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
+            BoardTestCheckForPatternMethod(ref board, -direction, board.Win, Piece.P1, board.CheckForWin);
         }
 
         [TestMethod]
@@ -340,11 +290,10 @@ namespace PenteTests
 
             //forwards
             Vec2 direction = new Vec2 { x = 1, y = 1 };
-            BoardCheckForPattern(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
+            BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
 
             //backwards
-            direction = new Vec2 { x = -1, y = -1 };
-            BoardCheckForPattern(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
+            BoardTestCheckForPatternMethod(ref board, -direction, board.Win, Piece.P1, board.CheckForWin);
         }
 
         [TestMethod]
@@ -354,11 +303,10 @@ namespace PenteTests
 
             //forwards
             Vec2 direction = new Vec2 { x = 1, y = -1 };
-            BoardCheckForPattern(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
+            BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
 
             //backwards
-            direction = new Vec2 { x = -1, y = 1 };
-            BoardCheckForPattern(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
+            BoardTestCheckForPatternMethod(ref board, -direction, board.Win, Piece.P1, board.CheckForWin);
         }
 
         [TestMethod]
@@ -368,11 +316,10 @@ namespace PenteTests
 
             //forwards
             Vec2 direction = new Vec2 { x = 0, y = 1 };
-            BoardCheckForPattern(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
+            BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
 
             //backwards
-            direction = new Vec2 { x = 0, y = -1 };
-            BoardCheckForPattern(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
+            BoardTestCheckForPatternMethod(ref board, -direction, board.Win, Piece.P2, board.CheckForWin);
         }
 
         [TestMethod]
@@ -382,11 +329,10 @@ namespace PenteTests
 
             //forwards
             Vec2 direction = new Vec2 { x = 1, y = 0 };
-            BoardCheckForPattern(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
+            BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
 
             //backwards
-            direction = new Vec2 { x = -1, y = 0 };
-            BoardCheckForPattern(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
+            BoardTestCheckForPatternMethod(ref board, -direction, board.Win, Piece.P2, board.CheckForWin);
         }
 
         [TestMethod]
@@ -396,11 +342,10 @@ namespace PenteTests
 
             //forwards
             Vec2 direction = new Vec2 { x = 1, y = 1 };
-            BoardCheckForPattern(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
+            BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
 
             //backwards
-            direction = new Vec2 { x = -1, y = -1 };
-            BoardCheckForPattern(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
+            BoardTestCheckForPatternMethod(ref board, -direction, board.Win, Piece.P2, board.CheckForWin);
         }
 
         [TestMethod]
@@ -409,12 +354,11 @@ namespace PenteTests
             Board board = new Board();
 
             //forwards
-            Vec2 direction = new Vec2 { x = 1, y = -1 };
-            BoardCheckForPattern(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
+            Vec2 direction = new Vec2(1, -1);
+            BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
 
             //backwards
-            direction = new Vec2 { x = -1, y = 1 };
-            BoardCheckForPattern(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
+            BoardTestCheckForPatternMethod(ref board, -direction, board.Win, Piece.P2, board.CheckForWin);
         }
         #endregion
     }
