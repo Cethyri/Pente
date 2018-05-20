@@ -12,22 +12,30 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Diagnostics;
 
 namespace Pente
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for GamePente.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class GamePente : Page
     {
-	
-        public MainWindow()
+
+        public GamePente()
         {
             InitializeComponent();
+            BoardControl.InitializeBoard();
+        }
+
+        private void btnMainMenu_Click(object sender, RoutedEventArgs e)
+        {
             this.NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
 
         }
 
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

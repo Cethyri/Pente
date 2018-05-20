@@ -58,11 +58,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GamePente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GameWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HowToPlay.xaml">
+    <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -81,19 +85,22 @@
     <Compile Include="Vec2.cs" />
     <Compile Include="Computer.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="GamePente.xaml.cs">
+      <DependentUpon>GamePente.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HowToPlay.xaml.cs">
-      <DependentUpon>HowToPlay.xaml</DependentUpon>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ModeSelect.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="ModePage.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PieceControl.xaml">
       <SubType>Designer</SubType>
@@ -106,8 +113,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Manager.cs" />
-    <Compile Include="ModeSelect.xaml.cs">
-      <DependentUpon>ModeSelect.xaml</DependentUpon>
+    <Compile Include="ModePage.xaml.cs">
+      <DependentUpon>ModePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PieceControl.xaml.cs">
       <DependentUpon>PieceControl.xaml</DependentUpon>

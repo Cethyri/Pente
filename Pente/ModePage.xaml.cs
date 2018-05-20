@@ -10,31 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Pente
 {
     /// <summary>
-    /// Interaction logic for ModeSelect.xaml
+    /// Interaction logic for ModePage.xaml
     /// </summary>
-    public partial class ModeSelect : Window
+    public partial class ModePage : Page
     {
-        MainWindow parent;
 
-        public ModeSelect(MainWindow window)
+        public ModePage()
         {
-            parent = window;
             InitializeComponent();
         }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (this.Visibility != Visibility.Hidden)
-            {
-                parent.Visibility = Visibility.Visible;
-            }
-        }
-
         private void btnPVP_Click(object sender, RoutedEventArgs e)
         {
             txtboxP2.IsEnabled = true;
@@ -71,10 +61,9 @@ namespace Pente
                 Manager.instance.p2.name = txtboxP2.Text;
             }
 
-            //Manager.instance.board.Initialize();
-
-            parent.NewGame();
-            this.Hide();
+      //      Manager.instance.board.Initialize(Manager.instance.p1, Manager.instance.p2);
+            this.NavigationService.Navigate(new Uri("/GamePente.xaml", UriKind.Relative));
         }
     }
+
 }
