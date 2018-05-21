@@ -22,7 +22,7 @@ namespace DataPersistence
             SaveFileDialog sfd = new SaveFileDialog
             {
                 InitialDirectory = System.Reflection.Assembly.GetExecutingAssembly().Location,
-                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",
+                Filter = "pnte files (*.pnte)|*.pnte|All files (*.*)|*.*",
                 FilterIndex = 2,
                 RestoreDirectory = true,
                 OverwritePrompt = false,
@@ -52,7 +52,7 @@ namespace DataPersistence
             OpenFileDialog ofd = new OpenFileDialog
             {
                 InitialDirectory = System.Reflection.Assembly.GetExecutingAssembly().Location,
-                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",
+                Filter = "pnte files (*.pnte)|*.pnte|All files (*.*)|*.*",
                 FilterIndex = 2,
                 RestoreDirectory = true
             };
