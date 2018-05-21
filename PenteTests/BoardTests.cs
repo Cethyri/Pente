@@ -30,13 +30,23 @@ namespace PenteTests
             Player p1 = new Player();
             Player p2 = new Player();
 
-            board.Initialize(p1, p2, 19);
+            CheckProperInitialization(board, p1, p2, 19);
+            CheckProperInitialization(board, p1, p2, 9);
+            CheckProperInitialization(board, p1, p2, 31);
+        }
 
-            for (int i = 0; i < board.Grid.GetLength(0); i++)
+        private static void CheckProperInitialization(Board board, Player p1, Player p2, int size)
+        {
+            board.Initialize(p1, p2, size);
+
+            int xLength = board.Grid.GetLength(0);
+            int yLength = board.Grid.GetLength(1);
+
+            for (int i = 0; i < xLength; i++)
             {
-                for (int j = 0; j < board.Grid.GetLength(1); j++)
+                for (int j = 0; j < yLength; j++)
                 {
-                    Assert.AreEqual(Piece.EMPTY, board.Grid[i, j]);
+                    Assert.AreEqual((i == xLength / 2 && j == yLength / 2) ? Piece.P1 : Piece.EMPTY, board.Grid[i, j]);
                 }
             }
         }
@@ -48,17 +58,17 @@ namespace PenteTests
             Player p1 = new Player();
             Player p2 = new Player();
 
-            board.Grid.Set(start, Piece.P1);
+            board.Grid.Set(start, Piece.P2);
 
-            board.Initialize(p1, p2, 19);
+            CheckProperInitialization(board, p1, p2, 19);
 
-            for (int i = 0; i < board.Grid.GetLength(0); i++)
-            {
-                for (int j = 0; j < board.Grid.GetLength(1); j++)
-                {
-                    Assert.AreEqual(Piece.EMPTY, board.Grid[i, j]);
-                }
-            }
+            board.Grid.Set(start, Piece.P2);
+
+            CheckProperInitialization(board, p1, p2, 11);
+
+            board.Grid.Set(start, Piece.P2);
+
+            CheckProperInitialization(board, p1, p2, 27);
         }
 
         [TestMethod]
@@ -74,8 +84,6 @@ namespace PenteTests
                 Assert.AreEqual(i, board.Grid.GetLength(0));
                 Assert.AreEqual(i, board.Grid.GetLength(1));
             }
-
-
         }
         #endregion
 

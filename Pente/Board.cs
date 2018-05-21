@@ -30,10 +30,11 @@ namespace Pente
         public Player p1;
         public Player p2;
 
-        public Piece currentPlayerPiece = Piece.P1;
+        public int turnCount = 0;
+        public Piece currentPlayerPiece { get { return (turnCount % 2 == 0) ? Piece.P1 : Piece.P2; } }
 
         /// <summary>
-        /// Initializes the board to empty, initializes players, initializes playerPiece to P1
+        /// Initializes the board to empty with p1 piece in the center, initializes players, initializes playerPiece to P1
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
@@ -60,7 +61,7 @@ namespace Pente
             if (IsValidPlacement(position))
             {
                 Grid[position.x, position.y] = currentPlayerPiece;
-                currentPlayerPiece = currentPlayerPiece.Mult(Piece.P2);
+                turnCount++;
             }
         }
 
@@ -100,13 +101,13 @@ namespace Pente
             }
 
             if (!isSymetrical && !hasFoundPattern)
-            foreach (Vec2 direction in directions)
-            {
-                if (hasFoundPattern = CheckForPatternInDirection(position, pattern, ref startOfPattern, ref endOfPattern, -direction))
+                foreach (Vec2 direction in directions)
                 {
-                    break;
+                    if (hasFoundPattern = CheckForPatternInDirection(position, pattern, ref startOfPattern, ref endOfPattern, -direction))
+                    {
+                        break;
+                    }
                 }
-            }
 
             return hasFoundPattern;
         }
