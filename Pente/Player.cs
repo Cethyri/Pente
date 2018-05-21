@@ -9,7 +9,10 @@ namespace Pente
     [Serializable]
     public class Player
     {
-        public int captures;
-        public string name;
+        int captures;
+        string name;
+
+        public int Captures { get { return captures; } set { captures = value; } }
+        public string Name { get { return name; } set { name = value; } }
     }
 }

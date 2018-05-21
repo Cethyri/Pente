@@ -42,23 +42,23 @@ namespace Pente
         {
             if (txtboxP1.Text == "")
             {
-                Manager.instance.p1.name = "Player 1";
+                Manager.instance.p1.Name = "Player 1";
             }
             else
             {
-                Manager.instance.p1.name = txtboxP1.Text;
+                Manager.instance.p1.Name = txtboxP1.Text;
             }
             if (txtboxP2.Text == "")
             {
-                Manager.instance.p2.name = "Player 2";
+                Manager.instance.p2.Name = "Player 2";
             }
             else if (txtboxP2.IsEnabled == false)
             {
-                Manager.instance.p2.name = "Computer Player";
+                Manager.instance.p2.Name = "Computer Player";
             }
             else
             {
-                Manager.instance.p2.name = txtboxP2.Text;
+                Manager.instance.p2.Name = txtboxP2.Text;
             }
 
       //      Manager.instance.board.Initialize(Manager.instance.p1, Manager.instance.p2);

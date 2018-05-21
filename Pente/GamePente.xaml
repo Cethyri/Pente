@@ -15,7 +15,6 @@
 
         </Grid.ColumnDefinitions>
 
-        <local:PlayerControl x:Name="Player1" Grid.Column="0"/>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="90*"/>
@@ -35,12 +34,14 @@
                 </Grid.ColumnDefinitions>
 
                 <Button     x:Name="btnSave"     Content="Save"         Grid.Column="0" FontFamily="Comic Sans MS" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" Click="btnSave_Click"/>
-                <TextBlock  x:Name="Timer"       Text="20.0s"           Grid.Column="1" FontFamily="Comic Sans MS" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock  x:Name="Timer"       Text="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"           Grid.Column="1" FontFamily="Comic Sans MS" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 <Button     x:Name="btnMainMenu" Content="Main Menu"    Grid.Column="2" FontFamily="Comic Sans MS" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" Click="btnMainMenu_Click"/>
 
             </Grid>
 
         </Grid>
+        <local:PlayerControl x:Name="Player1" Grid.Column="0"/>
+
         <local:PlayerControl x:Name="Player2" Grid.Column="2"/>
     </Grid>
 </Page>
