@@ -20,9 +20,20 @@ namespace Pente
     /// </summary>
     public partial class PlayerControl : UserControl
     {
+        Player player;
         public PlayerControl()
         {
             InitializeComponent();
+            name1.DataContext = player;
+            name2.DataContext = player;
+        }
+
+        public void SetPlayer(ref Player p)
+        {
+            if (p == null) return;
+            player = p;
+            name1.DataContext = player;
+            name2.DataContext = player;
         }
     }
 }
