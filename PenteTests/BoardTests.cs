@@ -85,6 +85,32 @@ namespace PenteTests
                 Assert.AreEqual(i, board.Grid.GetLength(1));
             }
         }
+
+        [TestMethod]
+        public void BoardInitialize_TurnCount_Test()
+        {
+            Board board = new Board();
+            Player p1 = new Player();
+            Player p2 = new Player();
+
+
+            board.turnCount = 5;
+
+            board.Initialize(p1, p2, 19);
+            Assert.AreEqual(1, board.turnCount);
+
+
+            board.turnCount = int.MaxValue;
+
+            board.Initialize(p1, p2, 9);
+            Assert.AreEqual(1, board.turnCount);
+
+
+            board.turnCount = int.MinValue;
+
+            board.Initialize(p1, p2, 39);
+            Assert.AreEqual(1, board.turnCount);
+        }
         #endregion
 
         #region Capture Checks
