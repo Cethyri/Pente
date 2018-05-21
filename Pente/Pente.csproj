@@ -148,11 +148,35 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
+    <Resource Include="Images\Empty+x+y.png" />
+    <Resource Include="Images\Empty+x-y.png" />
+    <Resource Include="Images\Empty+x.png" />
+    <Resource Include="Images\Empty+y.png" />
+    <Resource Include="Images\Empty-x+y.png" />
+    <Resource Include="Images\Empty-x-y.png" />
+    <Resource Include="Images\Empty-x.png" />
+    <Resource Include="Images\Empty-y.png" />
     <Resource Include="Images\Empty.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Images\Empty2.png" />
+    <Resource Include="Images\P1+x+y.png" />
+    <Resource Include="Images\P1+x-y.png" />
+    <Resource Include="Images\P1+x.png" />
+    <Resource Include="Images\P1+y.png" />
+    <Resource Include="Images\P1-x+y.png" />
+    <Resource Include="Images\P1-x-y.png" />
+    <Resource Include="Images\P1-x.png" />
+    <Resource Include="Images\P1-y.png" />
     <Resource Include="Images\P1.png" />
+    <Resource Include="Images\P2+x+y.png" />
+    <Resource Include="Images\P2+x-y.png" />
+    <Resource Include="Images\P2+x.png" />
+    <Resource Include="Images\P2+y.png" />
+    <Resource Include="Images\P2-x+y.png" />
+    <Resource Include="Images\P2-x-y.png" />
+    <Resource Include="Images\P2-x.png" />
+    <Resource Include="Images\P2-y.png" />
     <Resource Include="Images\P2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
