@@ -51,7 +51,15 @@ namespace Pente
         /// <param name="position"></param>
         public bool IsValidPlacement(Vec2 position)
         {
-            return Grid[position.x, position.y].Equals(Piece.EMPTY);
+            if(turnCount == 2)
+            {
+                Vec2 relativePosition = position - (new Vec2(Grid.GetLength(0), Grid.GetLength(1)) / 2);
+
+                if (relativePosition.x < 3 && relativePosition.x > -3 &&
+                    relativePosition.y < 3 && relativePosition.y > -3) return false;
+            }
+
+            return Grid.Get(position).Equals(Piece.EMPTY);
         }
 
         /// <summary>
