@@ -23,6 +23,11 @@ namespace Pente
             return new Vec2(left.x * right, left.y * right);
         }
 
+        public static Vec2 operator /(Vec2 left, int right)
+        {
+            return new Vec2(left.x / right, left.y / right);
+        }
+
         public static Vec2 operator+ (Vec2 left, Vec2 right)
         {
             return new Vec2(left.x + right.x, left.y + right.y);

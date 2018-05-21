@@ -124,7 +124,7 @@ namespace PenteTests
             pattern = pattern.GetPatternFor(playerPiece);
 
             board.Initialize(p1, p2, 19);
-            board.currentPlayerPiece = playerPiece;
+            board.turnCount = playerPiece == Piece.P1 ? 0 : 1;
 
             for (int i = 0; i < pattern.Length; i++)
             {
@@ -289,7 +289,7 @@ namespace PenteTests
             Player p2 = new Player();
 
             board.Initialize(p1, p2, 19);
-            board.p1.captures = 5;
+            board.p1.Captures = 5;
 
             Assert.IsTrue(board.CheckForWin(start));
         }
@@ -302,7 +302,7 @@ namespace PenteTests
             Player p2 = new Player();
 
             board.Initialize(p1, p2, 19);
-            board.currentPlayerPiece = Piece.P2;
+            board.turnCount = 1;
             board.p2.Captures = 5;
 
             Assert.IsTrue(board.CheckForWin(start));
