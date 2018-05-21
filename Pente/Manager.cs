@@ -12,6 +12,8 @@ namespace Pente
 
         public Player p1;
         public Player p2;
+
+        public int size;
          
         public Board board;
 

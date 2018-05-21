@@ -27,13 +27,19 @@ namespace Pente
             InitializeComponent();
         }
 
-        public void InitializeBoard(/*Player P1, Player P2*/)
+        public void InitializeBoard(int size)
         {
-            board.Initialize(Manager.instance.p1, Manager.instance.p2);
+            board.Initialize(Manager.instance.p1, Manager.instance.p2, size);
 
-            for(int y = 0; y < board.Grid.GetLength(1); y++)
+            int xLength = board.Grid.GetLength(0);
+            int yLength = board.Grid.GetLength(1);
+
+            ugrdGrid.Columns = xLength;
+            ugrdGrid.Rows = yLength;
+
+            for (int y = 0; y < yLength; y++)
             {
-                for (int x = 0; x < board.Grid.GetLength(0); x++)
+                for (int x = 0; x < xLength; x++)
                 {
                     PieceControl piece = new PieceControl(new Vec2 { x = x, y = y });
                     piece.DataContext = piece;

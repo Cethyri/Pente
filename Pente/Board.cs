@@ -25,7 +25,7 @@ namespace Pente
 
         public readonly Vec2[] directions = { new Vec2(1, 0), new Vec2(0, 1), new Vec2(1, 1), new Vec2(1, -1) };
 
-        public Piece[,] Grid = new Piece[19, 19];
+        public Piece[,] Grid;
 
         public Player p1;
         public Player p2;
@@ -37,7 +37,7 @@ namespace Pente
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
-        public void Initialize(Player p1, Player p2)
+        public void Initialize(Player p1, Player p2, int size)
         {
 
         }

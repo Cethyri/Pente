@@ -24,7 +24,7 @@ namespace Pente
         public GamePente()
         {
             InitializeComponent();
-            BoardControl.InitializeBoard();
+            BoardControl.InitializeBoard(Manager.instance.size);
         }
 
         private void btnMainMenu_Click(object sender, RoutedEventArgs e)

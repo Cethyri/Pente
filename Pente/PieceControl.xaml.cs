@@ -25,8 +25,9 @@ namespace Pente
 
 
                 string imagePath = "Images/";
+                Board board = Manager.instance.board;
 
-                switch (Manager.instance.board.Grid.Get(Position))
+                switch (board.Grid.Get(Position))
                 {
                     case Piece.P1:
                         imagePath += "P1";
@@ -38,6 +39,10 @@ namespace Pente
                         imagePath += "Empty";
                         break;
                 }
+
+                imagePath += Position.x == 0 ? "-x" : Position.x == board.Grid.GetLength(0) - 1 ? "+x" : "";
+
+                imagePath += Position.y == 0 ? "-y" : Position.y == board.Grid.GetLength(1) - 1 ? "+y" : "";
 
                 imagePath += ".png";
 
