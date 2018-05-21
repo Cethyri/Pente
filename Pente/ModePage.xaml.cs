@@ -61,6 +61,8 @@ namespace Pente
                 Manager.instance.p2.Name = txtboxP2.Text;
             }
 
+            Manager.instance.size = (int)sldr.Value;
+
       //      Manager.instance.board.Initialize(Manager.instance.p1, Manager.instance.p2);
             this.NavigationService.Navigate(new Uri("/GamePente.xaml", UriKind.Relative));
         }

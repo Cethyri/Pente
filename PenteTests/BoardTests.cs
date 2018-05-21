@@ -58,6 +58,8 @@ namespace PenteTests
             Player p1 = new Player();
             Player p2 = new Player();
 
+            board.Initialize(p1, p2, 19);
+
             board.Grid.Set(start, Piece.P2);
 
             CheckProperInitialization(board, p1, p2, 19);

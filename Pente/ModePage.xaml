@@ -20,6 +20,8 @@
             <RowDefinition Height="25*"/>
             <RowDefinition Height="25*"/>
             <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
         </Grid.RowDefinitions>
         <Grid x:Name="lilGrid" Grid.Row="3">
             <Grid.ColumnDefinitions>
@@ -50,7 +52,10 @@
             <Label x:Name="lblP1" Content="Player 1's name" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="12" FontFamily="Comic Sans MS"/>
             <Label x:Name="lblP2" Content="Player 2's name" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="12" FontFamily="Comic Sans MS"/>
         </Grid>
-        <Grid x:Name="lastName" Grid.Row="9">
+        <Slider x:Name="sldr" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center" Minimum="9" Maximum="39" TickFrequency="2" Width="400" Value="19" IsSnapToTickEnabled="True"/>
+        <Label x:Name="lblSize" Grid.Row="10" Content="{Binding ElementName=sldr, Path=Value}"/>
+
+        <Grid x:Name="lastName" Grid.Row="11">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50*"/>
                 <ColumnDefinition Width="25*"/>

@@ -43,6 +43,8 @@ namespace Pente
             Grid = new Piece[size, size];
             p1 = player1;
             p2 = player2;
+            Grid[size / 2, size / 2] = Piece.P1;
+            turnCount = 1;
         }
 
         /// <summary>

@@ -27,6 +27,11 @@ namespace Pente
                 string imagePath = "Images/";
                 Board board = Manager.instance.board;
 
+                if (board.Grid == null)
+                {
+                    return "";
+                }
+
                 switch (board.Grid.Get(Position))
                 {
                     case Piece.P1:

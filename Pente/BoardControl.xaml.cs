@@ -20,7 +20,6 @@ namespace Pente
     /// </summary>
     public partial class BoardControl : UserControl
     {
-        Board board = new Board();
 
         public BoardControl()
         {
@@ -29,6 +28,7 @@ namespace Pente
 
         public void InitializeBoard(int size)
         {
+            Board board = Manager.instance.board;
             board.Initialize(Manager.instance.p1, Manager.instance.p2, size);
 
             int xLength = board.Grid.GetLength(0);
