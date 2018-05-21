@@ -32,7 +32,7 @@ namespace Pente
         public GamePente()
         {
             InitializeComponent();
-            BoardControl.InitializeBoard();
+            BoardControl.InitializeBoard(Manager.instance.size);
             Player1.SetPlayer(ref Manager.instance.p1);
             Player2.SetPlayer(ref Manager.instance.p2);
 

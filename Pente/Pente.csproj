@@ -62,10 +62,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GameWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -82,14 +78,12 @@
     <Compile Include="BoardControl.xaml.cs">
       <DependentUpon>BoardControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Serializer.cs" />
     <Compile Include="Vec2.cs" />
     <Compile Include="Computer.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GamePente.xaml.cs">
       <DependentUpon>GamePente.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GameWindow.xaml.cs">
-      <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -149,10 +143,32 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\Empty+x+y.png" />
+    <Resource Include="Images\Empty+x-y.png" />
+    <Resource Include="Images\Empty+x.png" />
+    <Resource Include="Images\Empty+y.png" />
+    <Resource Include="Images\Empty-x+y.png" />
+    <Resource Include="Images\Empty-x-y.png" />
+    <Resource Include="Images\Empty-x.png" />
+    <Resource Include="Images\Empty-y.png" />
     <Resource Include="Images\Empty.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Images\P1+x+y.png" />
+    <Resource Include="Images\P1+x-y.png" />
+    <Resource Include="Images\P1+x.png" />
+    <Resource Include="Images\P1+y.png" />
+    <Resource Include="Images\P1-x+y.png" />
+    <Resource Include="Images\P1-x-y.png" />
+    <Resource Include="Images\P1-x.png" />
+    <Resource Include="Images\P1-y.png" />
     <Resource Include="Images\P1.png" />
+    <Resource Include="Images\P2+x+y.png" />
+    <Resource Include="Images\P2+x-y.png" />
+    <Resource Include="Images\P2+x.png" />
+    <Resource Include="Images\P2+y.png" />
+    <Resource Include="Images\P2-x+y.png" />
+    <Resource Include="Images\P2-x-y.png" />
+    <Resource Include="Images\P2-x.png" />
+    <Resource Include="Images\P2-y.png" />
     <Resource Include="Images\P2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

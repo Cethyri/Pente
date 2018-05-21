@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pente
 {
+    [Serializable]
     public enum Piece
     {
         P1 = 1,
@@ -13,6 +14,7 @@ namespace Pente
         EMPTY = 0
     }
 
+    [Serializable]
     public class Board
     {
         // multiply by P2 to get P2Version
@@ -21,7 +23,9 @@ namespace Pente
         public readonly Piece[] Tessera = { Piece.EMPTY, Piece.P1, Piece.P1, Piece.P1, Piece.P1 };
         public readonly Piece[] Win = { Piece.P1, Piece.P1, Piece.P1, Piece.P1, Piece.P1 };
 
-        public Piece[,] Grid = new Piece[19, 19];
+        public readonly Vec2[] directions = { new Vec2(1, 0), new Vec2(0, 1), new Vec2(1, 1), new Vec2(1, -1) };
+
+        public Piece[,] Grid;
 
         public Player p1;
         public Player p2;
@@ -33,7 +37,7 @@ namespace Pente
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
-        public void Initialize(Player p1, Player p2)
+        public void Initialize(Player p1, Player p2, int size)
         {
 
         }
@@ -86,8 +90,29 @@ namespace Pente
         /// <returns>bool if the pattern was found</returns>
         public bool CheckForPattern(Vec2 position, Piece[] pattern, bool isSymetrical, ref Vec2 startOfPattern, ref Vec2 endOfPattern)
         {
-            Vec2 direction = new Vec2(1, 0);
+            bool hasFoundPattern = false;
+            foreach (Vec2 direction in directions)
+            {
+                if (hasFoundPattern = CheckForPatternInDirection(position, pattern, ref startOfPattern, ref endOfPattern, direction))
+                {
+                    break;
+                }
+            }
 
+            if (!isSymetrical && !hasFoundPattern)
+            foreach (Vec2 direction in directions)
+            {
+                if (hasFoundPattern = CheckForPatternInDirection(position, pattern, ref startOfPattern, ref endOfPattern, -direction))
+                {
+                    break;
+                }
+            }
+
+            return hasFoundPattern;
+        }
+
+        private bool CheckForPatternInDirection(Vec2 position, Piece[] pattern, ref Vec2 startOfPattern, ref Vec2 endOfPattern, Vec2 direction)
+        {
             Vec2 startPosition = position - (direction * (pattern.Length - 1));
             Vec2 endPosition = position + (direction * (pattern.Length - 1));
 
@@ -126,6 +151,16 @@ namespace Pente
             }
 
             return hasFoundPattern;
+        }
+
+        public void Save()
+        {
+
+        }
+
+        public void Load()
+        {
+
         }
     }
 }

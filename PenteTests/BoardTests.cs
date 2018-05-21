@@ -18,7 +18,7 @@ namespace PenteTests
             Player p1 = new Player();
             Player p2 = new Player();
 
-            board.Initialize(p1, p2);
+            board.Initialize(p1, p2, 19);
 
             Assert.IsTrue((p1 == board.p1) && (p2 == board.p2));
         }
@@ -30,7 +30,7 @@ namespace PenteTests
             Player p1 = new Player();
             Player p2 = new Player();
 
-            board.Initialize(p1, p2);
+            board.Initialize(p1, p2, 19);
 
             for (int i = 0; i < board.Grid.GetLength(0); i++)
             {
@@ -50,7 +50,7 @@ namespace PenteTests
 
             board.Grid.Set(start, Piece.P1);
 
-            board.Initialize(p1, p2);
+            board.Initialize(p1, p2, 19);
 
             for (int i = 0; i < board.Grid.GetLength(0); i++)
             {
@@ -60,19 +60,36 @@ namespace PenteTests
                 }
             }
         }
+
+        [TestMethod]
+        public void BoardInitialize_Grid_Dimensions_Test()
+        {
+            Board board = new Board();
+            Player p1 = new Player();
+            Player p2 = new Player();
+
+            for (int i = 9; i < 40; i += 2)
+            {
+                board.Initialize(p1, p2, i);
+                Assert.AreEqual(i, board.Grid.GetLength(0));
+                Assert.AreEqual(i, board.Grid.GetLength(1));
+            }
+
+
+        }
         #endregion
 
         #region Capture Checks
         public delegate bool CheckForDelegate(Vec2 position);
 
-        public bool BoardTestCheckForPatternMethod(ref Board board, Vec2 direction, Piece[] pattern, Piece playerPiece, CheckForDelegate checkForDelegate)
+        public void BoardTestCheckForPatternMethod(ref Board board, Vec2 direction, Piece[] pattern, Piece playerPiece, CheckForDelegate checkForDelegate)
         {
             Player p1 = new Player();
             Player p2 = new Player();
 
             pattern = pattern.GetPatternFor(playerPiece);
 
-            board.Initialize(p1, p2);
+            board.Initialize(p1, p2, 19);
             board.currentPlayerPiece = playerPiece;
 
             for (int i = 0; i < pattern.Length; i++)
@@ -80,9 +97,9 @@ namespace PenteTests
                 board.Grid.Set(start + direction * i, pattern[i]);
             }
 
-            return checkForDelegate(start);
+            Assert.IsTrue(checkForDelegate(start));
         }
-        
+
         private void PatternExists(Board board, Vec2 direction, Piece[] patternToFind)
         {
             for (int i = 0; i < patternToFind.Length; i++)
@@ -237,8 +254,8 @@ namespace PenteTests
             Player p1 = new Player();
             Player p2 = new Player();
 
-            board.Initialize(p1, p2);
-            board.p1.Captures = 5;
+            board.Initialize(p1, p2, 19);
+            board.p1.captures = 5;
 
             Assert.IsTrue(board.CheckForWin(start));
         }
@@ -250,7 +267,7 @@ namespace PenteTests
             Player p1 = new Player();
             Player p2 = new Player();
 
-            board.Initialize(p1, p2);
+            board.Initialize(p1, p2, 19);
             board.currentPlayerPiece = Piece.P2;
             board.p2.Captures = 5;
 

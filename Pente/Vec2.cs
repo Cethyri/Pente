@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pente
 {
+    [Serializable]
     public struct Vec2
     {
         public int x;
