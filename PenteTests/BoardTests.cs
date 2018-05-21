@@ -289,7 +289,7 @@ namespace PenteTests
             Player p2 = new Player();
 
             board.Initialize(p1, p2, 19);
-            board.p1.captures = 5;
+            board.p1.Captures = 5;
 
             Assert.IsTrue(board.CheckForWin(start));
         }

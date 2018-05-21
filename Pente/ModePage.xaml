@@ -33,7 +33,7 @@
             <Button x:Name="btnPVE" Content="1 player" Grid.Column="1" FontFamily="Comic Sans MS" Click="btnPVE_Click"/>
 
         </Grid>
-        <TextBlock x:Name="Title" Text="How many players are playing?" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontFamily="Comic Sans MS"/>
+        <TextBlock x:Name="Title1" Text="How many players are playing?" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontFamily="Comic Sans MS"/>
 
         <TextBlock x:Name="Names" Text="What are the names of your players" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontFamily="Comic Sans MS"/>
 

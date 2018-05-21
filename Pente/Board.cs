@@ -38,9 +38,11 @@ namespace Pente
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
-        public void Initialize(Player p1, Player p2, int size)
+        public void Initialize(Player player1, Player player2, int size)
         {
-
+            Grid = new Piece[size, size];
+            p1 = player1;
+            p2 = player2;
         }
 
         /// <summary>
