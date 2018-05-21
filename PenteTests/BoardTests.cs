@@ -65,7 +65,7 @@ namespace PenteTests
         #region Capture Checks
         public delegate bool CheckForDelegate(Vec2 position);
 
-        public bool BoardTestCheckForPatternMethod(ref Board board, Vec2 direction, Piece[] pattern, Piece playerPiece, CheckForDelegate checkForDelegate)
+        public void BoardTestCheckForPatternMethod(ref Board board, Vec2 direction, Piece[] pattern, Piece playerPiece, CheckForDelegate checkForDelegate)
         {
             Player p1 = new Player();
             Player p2 = new Player();
@@ -80,7 +80,7 @@ namespace PenteTests
                 board.Grid.Set(start + direction * i, pattern[i]);
             }
 
-            return checkForDelegate(start);
+            Assert.IsTrue(checkForDelegate(start));
         }
         
         private void PatternExists(Board board, Vec2 direction, Piece[] patternToFind)
