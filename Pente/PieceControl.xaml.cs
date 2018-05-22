@@ -21,7 +21,10 @@ namespace Pente
     public partial class PieceControl : UserControl
     {
         public Vec2 Position { get; private set; }
-        public string ImagePath { get {
+        public string ImagePath
+        {
+            get
+            {
 
 
                 string imagePath = "Images/";
@@ -42,6 +45,10 @@ namespace Pente
                         break;
                     case Piece.EMPTY:
                         imagePath += "Empty";
+                        if (!board.IsValidPlacement(Position))
+                        {
+                            imagePath += "Inv";
+                        }
                         break;
                 }
 
@@ -52,12 +59,17 @@ namespace Pente
                 imagePath += ".png";
 
                 return imagePath;
-            } }
-        public PieceControl(Vec2 position)
+            }
+        }
+        private BoardControl board;
+
+        public PieceControl(Vec2 position, BoardControl board)
         {
             InitializeComponent();
 
             Position = position;
+
+            this.board = board;
         }
 
         public PieceControl()
@@ -68,6 +80,11 @@ namespace Pente
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Manager.instance.board.PlacePiece(Position);
+            board.UpdateImages();
+        }
+
+        public void UpdateImage()
+        {
             imgNotWorking.Source = new BitmapImage(new Uri(ImagePath, UriKind.Relative));
         }
     }

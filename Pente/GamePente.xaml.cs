@@ -60,9 +60,10 @@ namespace Pente
 
         public void ResetClock()
         {
-            timerF = 20;
-            //swap turns
 
+            MessageBox.Show("You're turn is skipped.", "Time's Up!");
+
+            timerF = 20;
         }
 
         private void btnMainMenu_Click(object sender, RoutedEventArgs e)
