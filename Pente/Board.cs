@@ -53,7 +53,7 @@ namespace Pente
         /// <param name="position"></param>
         public bool IsValidPlacement(Vec2 position)
         {
-            if(turnCount == 2)
+            if (turnCount == 2)
             {
                 Vec2 relativePosition = position - (new Vec2(Grid.GetLength(0), Grid.GetLength(1)) / 2);
 
@@ -92,6 +92,12 @@ namespace Pente
         public bool CheckForCapture(Vec2 position)
         {
             throw new NotImplementedException();
+        }
+
+        public bool CheckForPattern(Vec2 position, Piece[] pattern, bool isSymetrical)
+        {
+            Vec2 temp = new Vec2(), temp2 = new Vec2();
+            return CheckForPattern(position, pattern, isSymetrical, ref temp, ref temp2);
         }
 
         /// <summary>
