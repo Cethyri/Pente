@@ -72,7 +72,8 @@ namespace Pente
 
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("THIS ISNT IMPLEMENTED YET!");
+            //MessageBox.Show("THIS ISNT IMPLEMENTED YET!");
+            DataPersistence.Serializer.LoadFromFile();
         }
     }
 }
