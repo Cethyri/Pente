@@ -83,7 +83,17 @@ namespace Pente
         /// <returns></returns>
         public bool CheckForWin(Vec2 position)
         {
-            throw new NotImplementedException();
+            Vec2 nothing = new Vec2();
+            if (CheckForPattern(position, Win, true, ref nothing, ref nothing))
+            {
+                return true;
+            }
+            if (p1.Captures >= 5 || p2.Captures >=5)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -91,7 +101,14 @@ namespace Pente
         /// </summary>
         public bool CheckForCapture(Vec2 position)
         {
-            throw new NotImplementedException();
+            Vec2 start = position;
+            Vec2 direction = new Vec2();
+
+
+            if (CheckForPattern(position, Capture, false, ref start, ref direction))
+            {
+                position = position + direction;
+            }
         }
 
         /// <summary>
