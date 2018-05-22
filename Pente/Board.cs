@@ -84,7 +84,7 @@ namespace Pente
         public bool CheckForWin(Vec2 position)
         {
             Vec2 nothing = new Vec2();
-            if (CheckForPattern(position, Win, true, ref nothing, ref nothing))
+            if (CheckForPattern(position, Win.GetPatternFor(currentPlayerPiece), true, ref nothing, ref nothing))
             {
                 return true;
             }
