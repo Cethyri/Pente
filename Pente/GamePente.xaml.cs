@@ -47,8 +47,14 @@ namespace Pente
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            timerF -= dispatcherTimer.Interval.Seconds;
-            if (timerF <= -1) ResetClock();
+            if (timerF <= 0)
+            {
+                ResetClock();
+            }
+            else
+            {
+                timerF -= dispatcherTimer.Interval.Seconds;
+            }
 
             time = timerF.ToString();
             time = string.Format("{0:0.#}", time);
@@ -60,8 +66,10 @@ namespace Pente
 
         public void ResetClock()
         {
+            MessageBox.Show("Your turn is skipped.", "Time's Up!");
 
-            MessageBox.Show("You're turn is skipped.", "Time's Up!");
+            Manager.instance.board.turnCount++;
+            BoardControl.UpdateImages();
 
             timerF = 20;
         }
