@@ -47,13 +47,13 @@
                 <ColumnDefinition Width="25*"/>
                 <ColumnDefinition Width="25*"/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="txtboxP1" Text="Player 1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
-            <TextBox x:Name="txtboxP2" Text="Player 2" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+            <TextBox x:Name="txtboxP1" Text="Player 1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" MinWidth="30"/>
+            <TextBox x:Name="txtboxP2" Text="Player 2" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Center" MinWidth="30"/>
             <Label x:Name="lblP1" Content="Player 1's name" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="12" FontFamily="Comic Sans MS"/>
             <Label x:Name="lblP2" Content="Player 2's name" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="12" FontFamily="Comic Sans MS"/>
         </Grid>
-        <Slider x:Name="sldr" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center" Minimum="9" Maximum="39" TickFrequency="2" Width="400" Value="19" IsSnapToTickEnabled="True"/>
-        <Label x:Name="lblSize" Grid.Row="10" Content="{Binding ElementName=sldr, Path=Value}"/>
+        <Label x:Name="lblSize" Grid.Row="9" HorizontalAlignment="Center" Content="{Binding ElementName=sldr, Path=Value}" FontSize="12" FontFamily="Comic Sans MS"/>
+        <Slider x:Name="sldr" Grid.Row="10" HorizontalAlignment="Center" VerticalAlignment="Center" Minimum="9" Maximum="39" TickFrequency="2" Width="400" Value="19" IsSnapToTickEnabled="True"/>
 
         <Grid x:Name="lastName" Grid.Row="11">
             <Grid.ColumnDefinitions>
