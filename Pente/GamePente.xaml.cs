@@ -21,13 +21,10 @@ namespace Pente
     /// </summary>
     public partial class GamePente : Page
     {
-        int timerF = 20;
+        static int timerF = 20;
         string time = "20";
 
         DispatcherTimer dispatcherTimer;
-
-
-
 
         public GamePente()
         {
