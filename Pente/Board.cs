@@ -103,12 +103,16 @@ namespace Pente
         {
             Vec2 start = position;
             Vec2 direction = new Vec2();
-
-
+            
             if (CheckForPattern(position, Capture, false, ref start, ref direction))
             {
                 position = position + direction;
+                Grid[position.x, position.y] = Piece.EMPTY;
+                position += direction;
+                Grid[position.x, position.y] = Piece.EMPTY;
+                return true;
             }
+            return false;
         }
 
         public bool CheckForPattern(Vec2 position, Piece[] pattern, bool isSymetrical)
