@@ -31,7 +31,7 @@ namespace Pente
         public Player p2;
 
         public int turnCount = 0;
-        public Piece currentPlayerPiece { get { return (turnCount % 2 == 0) ? Piece.P1 : Piece.P2; } }
+        public Piece CurrentPlayerPiece { get { return (turnCount % 2 == 0) ? Piece.P1 : Piece.P2; } }
 
         /// <summary>
         /// Initializes the board to empty with p1 piece in the center, initializes players, initializes playerPiece to P1
@@ -72,10 +72,11 @@ namespace Pente
         {
             if (IsValidPlacement(position))
             {
-                Grid[position.x, position.y] = currentPlayerPiece;
+                Grid[position.x, position.y] = CurrentPlayerPiece;
+                CheckForCapture(position);
+                GamePente.timerF = 20;
                 turnCount++;
             }
-            CheckForCapture(position);
         }
 
         /// <summary>
@@ -85,7 +86,7 @@ namespace Pente
         public bool CheckForWin(Vec2 position)
         {
             Vec2 nothing = new Vec2();
-            if (CheckForPattern(position, Win.GetPatternFor(currentPlayerPiece), true, ref nothing, ref nothing))
+            if (CheckForPattern(position, Win.GetPatternFor(CurrentPlayerPiece), true, ref nothing, ref nothing))
             {
                 return true;
             }
@@ -105,7 +106,7 @@ namespace Pente
             Vec2 start = new Vec2();
             Vec2 direction = new Vec2();
             
-            if (CheckForPattern(position, Capture.GetPatternFor(currentPlayerPiece), false, ref start, ref direction))
+            if (CheckForPattern(position, Capture.GetPatternFor(CurrentPlayerPiece), false, ref start, ref direction))
             {
                 start += direction;
                 Grid.Set(start, Piece.EMPTY);// = Piece.EMPTY;
