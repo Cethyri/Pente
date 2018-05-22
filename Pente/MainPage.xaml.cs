@@ -73,7 +73,12 @@ namespace Pente
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show("THIS ISNT IMPLEMENTED YET!");
-            DataPersistence.Serializer.LoadFromFile();
+            Manager.instance.board = (Board)DataPersistence.Serializer.LoadFromFile();
+            Manager.instance.p1 = Manager.instance.board.p1;
+            Manager.instance.p2 = Manager.instance.board.p2;
+            Manager.instance.size = Manager.instance.board.Grid.GetLength(0);
+
+            this.NavigationService.Navigate(new Uri("/GamePenete.xaml", UriKind.Relative));
         }
     }
 }
