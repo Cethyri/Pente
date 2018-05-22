@@ -78,7 +78,7 @@ namespace Pente
             Manager.instance.p2 = Manager.instance.board.p2;
             Manager.instance.size = Manager.instance.board.Grid.GetLength(0);
 
-            this.NavigationService.Navigate(new Uri("/GamePenete.xaml", UriKind.Relative));
+            this.NavigationService.Navigate(new Uri("/GamePente.xaml", UriKind.Relative));
         }
     }
 }

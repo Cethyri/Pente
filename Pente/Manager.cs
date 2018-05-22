@@ -22,7 +22,6 @@ namespace Pente
             instance = this;
             p1 = new Player();
             p2 = new Player();
-            board = new Board();
             size = 19;
             
         }

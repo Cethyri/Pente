@@ -29,7 +29,7 @@ namespace Pente
         public GamePente()
         {
             InitializeComponent();
-            BoardControl.InitializeBoard(Manager.instance.size);
+            if(Manager.instance.board == null) BoardControl.InitializeBoard(Manager.instance.size);
             Player1.SetPlayer(ref Manager.instance.p1);
             Player2.SetPlayer(ref Manager.instance.p2);
 
@@ -74,8 +74,10 @@ namespace Pente
         private void btnMainMenu_Click(object sender, RoutedEventArgs e)
         {
             dispatcherTimer.Stop();
-            this.NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
 
+            Manager.instance.board = null;
+
+            this.NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
