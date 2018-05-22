@@ -48,5 +48,13 @@ namespace Pente
                 }
             }
         }
+
+        public void UpdateImages()
+        {
+            foreach(PieceControl p in ugrdGrid.Children)
+            {
+                p.UpdateImage();
+            }
+        }
     }
 }
