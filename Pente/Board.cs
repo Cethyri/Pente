@@ -105,15 +105,16 @@ namespace Pente
         /// </summary>
         /// <param name="pattern"></param>
         /// <param name="startOfPattern"></param>
-        /// <param name="endOfPattern"></param>
+        /// <param name="foundDirection"></param>
         /// <returns>bool if the pattern was found</returns>
-        public bool CheckForPattern(Vec2 position, Piece[] pattern, bool isSymetrical, ref Vec2 startOfPattern, ref Vec2 endOfPattern)
+        public bool CheckForPattern(Vec2 position, Piece[] pattern, bool isSymetrical, ref Vec2 startOfPattern, ref Vec2 foundDirection)
         {
             bool hasFoundPattern = false;
             foreach (Vec2 direction in directions)
             {
-                if (hasFoundPattern = CheckForPatternInDirection(position, pattern, ref startOfPattern, ref endOfPattern, direction))
+                if (hasFoundPattern = CheckForPatternInDirection(position, pattern, ref startOfPattern, direction))
                 {
+                    foundDirection = direction;
                     break;
                 }
             }
@@ -121,8 +122,9 @@ namespace Pente
             if (!isSymetrical && !hasFoundPattern)
                 foreach (Vec2 direction in directions)
                 {
-                    if (hasFoundPattern = CheckForPatternInDirection(position, pattern, ref startOfPattern, ref endOfPattern, -direction))
+                    if (hasFoundPattern = CheckForPatternInDirection(position, pattern, ref startOfPattern, -direction))
                     {
+                        foundDirection = -direction;
                         break;
                     }
                 }
@@ -130,7 +132,7 @@ namespace Pente
             return hasFoundPattern;
         }
 
-        private bool CheckForPatternInDirection(Vec2 position, Piece[] pattern, ref Vec2 startOfPattern, ref Vec2 endOfPattern, Vec2 direction)
+        private bool CheckForPatternInDirection(Vec2 position, Piece[] pattern, ref Vec2 startOfPattern, Vec2 direction)
         {
             Vec2 startPosition = position - (direction * (pattern.Length - 1));
             Vec2 endPosition = position + (direction * (pattern.Length - 1));
@@ -150,7 +152,6 @@ namespace Pente
                 hasFoundPattern = true;
 
                 startOfPattern = position + (direction * shift);
-                endOfPattern = position + (direction * (shift + pattern.Length - 1));
 
                 for (int i = 0; i < pattern.Length; i++)
                 {
