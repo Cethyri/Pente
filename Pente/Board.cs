@@ -75,6 +75,7 @@ namespace Pente
                 Grid[position.x, position.y] = currentPlayerPiece;
                 turnCount++;
             }
+            CheckForCapture(position);
         }
 
         /// <summary>
@@ -104,7 +105,7 @@ namespace Pente
             Vec2 start = new Vec2();
             Vec2 direction = new Vec2();
             
-            if (CheckForPattern(position, Capture, false, ref start, ref direction))
+            if (CheckForPattern(position, Capture.GetPatternFor(currentPlayerPiece), false, ref start, ref direction))
             {
                 start += direction;
                 Grid.Set(start, Piece.EMPTY);// = Piece.EMPTY;
