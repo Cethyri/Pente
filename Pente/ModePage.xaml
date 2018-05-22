@@ -10,18 +10,18 @@
 
     <Grid x:Name="BigGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="25*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
         <Grid x:Name="lilGrid" Grid.Row="3">
             <Grid.ColumnDefinitions>
@@ -47,8 +47,8 @@
                 <ColumnDefinition Width="25*"/>
                 <ColumnDefinition Width="25*"/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="txtboxP1" Text="Player 1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
-            <TextBox x:Name="txtboxP2" Text="Player 2" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+            <TextBox x:Name="txtboxP1" Text="Player 1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+            <TextBox x:Name="txtboxP2" Text="Player 2" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
             <Label x:Name="lblP1" Content="Player 1's name" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="12" FontFamily="Comic Sans MS"/>
             <Label x:Name="lblP2" Content="Player 2's name" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="12" FontFamily="Comic Sans MS"/>
         </Grid>
