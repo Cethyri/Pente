@@ -96,8 +96,8 @@ namespace Pente
 
         public bool CheckForPattern(Vec2 position, Piece[] pattern, bool isSymetrical)
         {
-            Vec2 temp = new Vec2(), temp2 = new Vec2();
-            return CheckForPattern(position, pattern, isSymetrical, ref temp, ref temp2);
+            Vec2 temp = new Vec2();
+            return CheckForPattern(position, pattern, isSymetrical, ref temp, ref temp);
         }
 
         /// <summary>

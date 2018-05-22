@@ -41,7 +41,7 @@ namespace Pente
             {
                 for (int x = 0; x < xLength; x++)
                 {
-                    PieceControl piece = new PieceControl(new Vec2 { x = x, y = y });
+                    PieceControl piece = new PieceControl(new Vec2 { x = x, y = y }, this);
                     piece.DataContext = piece;
 
                     ugrdGrid.Children.Add(piece);
