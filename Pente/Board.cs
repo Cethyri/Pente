@@ -109,6 +109,8 @@ namespace Pente
             {
                 position = position + direction;
             }
+
+            return false;
         }
 
         public bool CheckForPattern(Vec2 position, Piece[] pattern, bool isSymetrical)
@@ -157,12 +159,12 @@ namespace Pente
             startPosition.Clamp(0, Grid.GetLength(0));
             endPosition.Clamp(0, Grid.GetLength(0));
 
-            int startValue = Math.Max(startPosition.x - position.x, startPosition.y - position.y);
-            int endValue = Math.Min(endPosition.x - position.x, endPosition.y - position.y) - pattern.Length;
+            int startValue = Math.Abs(startPosition.x - position.x) > Math.Abs(startPosition.y - position.y) ? startPosition.x - position.x: startPosition.y - position.y;
+            int endValue = Math.Abs(endPosition.x - position.x) > Math.Abs(endPosition.y - position.y) ? endPosition.x - position.x : endPosition.y - position.y;
 
             Vec2 positionToCheck;
 
-            bool hasFoundPattern = true;
+            bool hasFoundPattern = false;
 
             for (int shift = startValue; shift <= endValue; shift++)
             {
