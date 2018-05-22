@@ -101,15 +101,16 @@ namespace Pente
         /// </summary>
         public bool CheckForCapture(Vec2 position)
         {
-            Vec2 start = position;
+            Vec2 start = new Vec2();
             Vec2 direction = new Vec2();
             
             if (CheckForPattern(position, Capture, false, ref start, ref direction))
             {
-                position = position + direction;
-                Grid[position.x, position.y] = Piece.EMPTY;
-                position += direction;
-                Grid[position.x, position.y] = Piece.EMPTY;
+                start += direction;
+                Grid.Set(start, Piece.EMPTY);// = Piece.EMPTY;
+                start += direction;
+                Grid.Set(start, Piece.EMPTY);// = Piece.EMPTY;
+                //Grid[position.x, position.y] = Piece.EMPTY;
                 return true;
             }
             return false;
