@@ -76,6 +76,7 @@ namespace Pente
 
         private void btnMainMenu_Click(object sender, RoutedEventArgs e)
         {
+            dispatcherTimer.Stop();
             this.NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
 
         }
