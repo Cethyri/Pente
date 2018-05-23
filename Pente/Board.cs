@@ -66,7 +66,7 @@ namespace Pente
 
                 if (CheckForWin(position))
                 {
-                    GamePente.instance.PlayByPlayList.Add($"{current.Name} Won!");
+                    GamePente.instance?.PlayByPlayList.Add($"{current.Name} Won!");
 
                     GamePente.Winscreen(current);
 
@@ -78,14 +78,14 @@ namespace Pente
 
                 if (CheckForPattern(position, Tessera.GetPatternFor(CurrentPlayerPiece), true))
                 {
-                    GamePente.instance.PlayByPlayList.Add($"{current.Name} made a Tessera!");
+                    GamePente.instance?.PlayByPlayList.Add($"{current.Name} made a Tessera!");
                 }
 
-                //check for three line
+                //check for tria
 
                 if (CheckForPattern(position, Tria.GetPatternFor(CurrentPlayerPiece), true))
                 {
-                    GamePente.instance.PlayByPlayList.Add($"{current.Name} made a Tria!");
+                    GamePente.instance?.PlayByPlayList.Add($"{current.Name} made a Tria!");
                 }
 
                 GamePente.timerF = 20;
@@ -122,11 +122,10 @@ namespace Pente
             {
                 check = true;
                 start += direction;
-                Grid.Set(start, Piece.EMPTY);// = Piece.EMPTY;
+                Grid.Set(start, Piece.EMPTY);
                 start += direction;
-                Grid.Set(start, Piece.EMPTY);// = Piece.EMPTY;
-                //Grid[position.x, position.y] = Piece.EMPTY;
-                //return true;
+                Grid.Set(start, Piece.EMPTY);
+
                 if (CurrentPlayerPiece == Piece.P1)
                 {
                     p1.Captures++;
@@ -137,10 +136,11 @@ namespace Pente
                 {
                     p2.Captures++;
                     if (GamePente.instance?.Player2 != null)
-
                         GamePente.instance.Player2.captures1.Text = p2.Captures.ToString();
-
                 }
+
+                GamePente.instance?.PlayByPlayList.Add($"{(turnCount % 2 == 0 ? p1 : p2).Name} Captured!");
+
             }
             return check;
             //return false;
