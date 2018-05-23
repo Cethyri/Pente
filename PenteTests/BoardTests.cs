@@ -717,7 +717,7 @@ namespace PenteTests
         }
 
         [TestMethod]
-        public void PieceGetPattern()
+        public void PieceArrayGetPatternFor_P2()
         {
             Piece[] pieces = new Piece[5];
             Piece[] test = new Piece[5];
@@ -737,7 +737,7 @@ namespace PenteTests
         }
 
         [TestMethod]
-        public void PieceGetPatternOther()
+        public void PieceArrayGetPatternFor_P1()
         {
             Piece[] pieces = new Piece[5];
             Piece[] test = new Piece[5];
@@ -779,6 +779,73 @@ pieces =             pieces.Mult(Piece.P2);
 
         }
 
+        #endregion
+
+        #region Computer Opponent Tests
+        [TestMethod]
+        public void ComputerTakeTurn_EmptyBoard()
+        {
+            Board board = new Board();
+            Player p1 = new Player();
+            Computer p2 = new Computer();
+
+            Manager.CreateNewManager();
+            Manager.instance.p1 = p1;
+            Manager.instance.p2 = p2;
+            Manager.instance.board = board;
+            Manager.instance.size = 19;
+
+            board.Initialize(p1, p2, 19);
+
+            bool p2PieceIsPlaced = false;
+            foreach(Piece p in board.Grid)
+            {
+                if (p == Piece.P2)
+                    p2PieceIsPlaced = true;
+            }
+
+            Assert.IsTrue(p2PieceIsPlaced);
+        }
+
+        [TestMethod]
+        public void ComputerTakeTurn_AlmostFullBoard()
+        {
+            Board board = new Board();
+            Player p1 = new Player();
+            Computer p2 = new Computer();
+
+            Manager.CreateNewManager();
+            Manager.instance.p1 = p1;
+            Manager.instance.p2 = p2;
+            Manager.instance.board = board;
+            Manager.instance.size = 19;
+
+            board.Initialize(p1, p2, 19);
+
+            for(int i = 0; i < board.Grid.GetLength(0); i++)
+            {
+                for(int j = 0; j < board.Grid.GetLength(1); j++)
+                {
+                    board.Grid.Set(new Vec2(i, j), Piece.P1);
+                    if(i == 10 && j == 10)
+                    {
+                        board.Grid.Set(new Vec2(i, j), Piece.EMPTY);
+                    }
+                }
+            }
+
+            board.turnCount = 3;
+
+            board.PlacePiece(p2.TakeTurn());
+
+            bool p2PieceIsPlaced = false;
+            foreach (Piece p in board.Grid)
+            {
+                if (p == Piece.P2) p2PieceIsPlaced = true;
+            }
+
+            Assert.IsTrue(p2PieceIsPlaced);
+        }
         #endregion
     }
 }

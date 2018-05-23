@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pente
 {
-    class Manager
+    public class Manager
     {
         public static Manager instance;
 
