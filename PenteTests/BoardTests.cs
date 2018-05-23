@@ -115,7 +115,7 @@ namespace PenteTests
         }
         #endregion
 
-        #region Something Useless
+        #region ValidPlacement Tests
         [TestMethod]
         public void PlacePieceTest()
         {
@@ -721,17 +721,64 @@ namespace PenteTests
         {
             Piece[] pieces = new Piece[5];
             Piece[] test = new Piece[5];
-            pieces.CopyTo(test, 5);
             for (int i = 0; i < pieces.Length; i++)
             {
                 pieces[i] = Piece.P1;
+                test[i] = Piece.P2;
             }
 
-            pieces.GetPatternFor(Piece.P1);
+            pieces = pieces.GetPatternFor(Piece.P2);
 
-            Assert.AreEqual(pieces, pieces);
+            for(int i = 0; i < pieces.Length; i++)
+            {
+                Assert.AreEqual(test[i], pieces[i]);
+            }
 
         }
+
+        [TestMethod]
+        public void PieceGetPatternOther()
+        {
+            Piece[] pieces = new Piece[5];
+            Piece[] test = new Piece[5];
+            for (int i = 0; i < pieces.Length; i++)
+            {
+                pieces[i] = Piece.P1;
+                test[i] = Piece.P1;
+            }
+
+            pieces = pieces.GetPatternFor(Piece.P1);
+
+            for (int i = 0; i < pieces.Length; i++)
+            {
+                Assert.AreEqual(test[i], pieces[i]);
+            }
+        }
+
+        [TestMethod]
+        public void PieceMult()
+        {
+            Piece pieces = Piece.P1;
+            Piece test = Piece.P2;
+
+pieces =             pieces.Mult(Piece.P2);
+
+            Assert.AreEqual(test, pieces);
+
+        }
+
+        [TestMethod]
+        public void PieceMultOther()
+        {
+            Piece pieces = Piece.P1;
+            Piece test = Piece.P1;
+
+            pieces = pieces.Mult(Piece.P1);
+
+            Assert.AreEqual(test, pieces);
+
+        }
+
         #endregion
     }
 }
