@@ -156,13 +156,15 @@ namespace PenteTests
 
             board.Initialize(p1, p2, 19);
 
+            Piece[] pattern = board.Capture.GetPatternFor(Piece.P1);
+
             foreach (Vec2 direction in board.directions)
             {
                 for (int i = 0; i < board.Capture.Length; i++)
                 {
-                    board.Grid.Set(start + direction * i, board.Capture[i]);
+                    board.Grid.Set(start + direction * i, pattern[i]);
 
-                    board.Grid.Set(start - direction * i, board.Capture[i]);
+                    board.Grid.Set(start - direction * i, pattern[i]);
                 }
             }
 
@@ -171,7 +173,7 @@ namespace PenteTests
             foreach (Vec2 direction in board.directions)
             {
                 PatternExists(board, direction, successfulCapture, Piece.P1);
-                
+
                 PatternExists(board, -direction, successfulCapture, Piece.P1);
             }
         }
@@ -192,9 +194,9 @@ namespace PenteTests
             {
                 for (int i = 0; i < board.Capture.Length; i++)
                 {
-                    board.Grid.Set(start + direction * i, board.Capture[i]);
+                    board.Grid.Set(start + direction * i, pattern[i]);
 
-                    board.Grid.Set(start - direction * i, board.Capture[i]);
+                    board.Grid.Set(start - direction * i, pattern[i]);
                 }
             }
 
