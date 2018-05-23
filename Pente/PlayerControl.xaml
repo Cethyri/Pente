@@ -9,6 +9,6 @@
     <Grid x:Name="myGrid">
 
         <TextBlock x:Name="name1" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="Comic Sans MS" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,-50,10,10"/>
-        <TextBlock x:Name="name2" Text="{Binding Captures, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="Comic Sans MS" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,10,10,10"/> 
+        <TextBlock x:Name="captures1" Text="{Binding Captures, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="Comic Sans MS" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,10,10,10"/> 
      </Grid>
 </UserControl>

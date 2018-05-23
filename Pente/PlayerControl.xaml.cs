@@ -25,7 +25,7 @@ namespace Pente
         {
             InitializeComponent();
             name1.DataContext = player;
-            name2.DataContext = player;
+            captures1.DataContext = player;
         }
 
         public void SetPlayer(ref Player p)
@@ -33,7 +33,7 @@ namespace Pente
             if (p == null) return;
             player = p;
             name1.DataContext = player;
-            name2.DataContext = player;
+            captures1.DataContext = player;
         }
     }
 }
