@@ -136,8 +136,10 @@ namespace PenteTests
             Assert.IsTrue(checkForDelegate(start));
         }
 
-        private void PatternExists(Board board, Vec2 direction, Piece[] patternToFind)
+        private void PatternExists(Board board, Vec2 direction, Piece[] patternToFind, Piece playerPiece)
         {
+            patternToFind = patternToFind.GetPatternFor(playerPiece);
+
             for (int i = 0; i < patternToFind.Length; i++)
             {
                 Assert.AreEqual(patternToFind[i], board.Grid.Get(start + direction * i));
@@ -153,12 +155,12 @@ namespace PenteTests
             Vec2 direction = new Vec2 { x = 0, y = 1 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
 
-            PatternExists(board, direction, successfulCapture);
+            PatternExists(board, direction, successfulCapture, Piece.P1);
 
             //backwards
             BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P1, board.CheckForCapture);
 
-            PatternExists(board, direction, successfulCapture);
+            PatternExists(board, -direction, successfulCapture, Piece.P1);
         }
 
         [TestMethod]
@@ -170,12 +172,12 @@ namespace PenteTests
             Vec2 direction = new Vec2 { x = 1, y = 0 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
 
-            PatternExists(board, direction, successfulCapture);
+            PatternExists(board, direction, successfulCapture, Piece.P1);
 
             //backwards
             BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P1, board.CheckForCapture);
 
-            PatternExists(board, direction, successfulCapture);
+            PatternExists(board, -direction, successfulCapture, Piece.P1);
         }
 
         [TestMethod]
@@ -187,12 +189,12 @@ namespace PenteTests
             Vec2 direction = new Vec2 { x = 1, y = 1 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
 
-            PatternExists(board, direction, successfulCapture);
+            PatternExists(board, direction, successfulCapture, Piece.P1);
 
             //backwards
             BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P1, board.CheckForCapture);
 
-            PatternExists(board, direction, successfulCapture);
+            PatternExists(board, -direction, successfulCapture, Piece.P1);
         }
 
         [TestMethod]
@@ -204,12 +206,12 @@ namespace PenteTests
             Vec2 direction = new Vec2 { x = 1, y = -1 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
 
-            PatternExists(board, direction, successfulCapture);
+            PatternExists(board, direction, successfulCapture, Piece.P1);
 
             //backwards
             BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P1, board.CheckForCapture);
 
-            PatternExists(board, direction, successfulCapture);
+            PatternExists(board, -direction, successfulCapture, Piece.P1);
         }
 
         [TestMethod]
@@ -221,12 +223,12 @@ namespace PenteTests
             Vec2 direction = new Vec2 { x = 0, y = 1 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
 
-            PatternExists(board, direction, successfulCapture);
+            PatternExists(board, direction, successfulCapture, Piece.P2);
 
             //backwards
             BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P2, board.CheckForCapture);
 
-            PatternExists(board, direction, successfulCapture);
+            PatternExists(board, -direction, successfulCapture, Piece.P2);
         }
 
         [TestMethod]
@@ -238,12 +240,12 @@ namespace PenteTests
             Vec2 direction = new Vec2 { x = 1, y = 0 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
 
-            PatternExists(board, direction, successfulCapture);
+            PatternExists(board, direction, successfulCapture, Piece.P2);
 
             //backwards
             BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P2, board.CheckForCapture);
 
-            PatternExists(board, direction, successfulCapture);
+            PatternExists(board, -direction, successfulCapture, Piece.P2);
         }
 
         [TestMethod]
@@ -255,12 +257,12 @@ namespace PenteTests
             Vec2 direction = new Vec2 { x = 1, y = 1 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
 
-            PatternExists(board, direction, successfulCapture);
+            PatternExists(board, direction, successfulCapture, Piece.P2);
 
             //backwards
             BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P2, board.CheckForCapture);
 
-            PatternExists(board, direction, successfulCapture);
+            PatternExists(board, -direction, successfulCapture, Piece.P2);
         }
 
         [TestMethod]
@@ -273,12 +275,12 @@ namespace PenteTests
 
             BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
 
-            PatternExists(board, direction, successfulCapture);
+            PatternExists(board, direction, successfulCapture, Piece.P2);
 
             //backwards
             BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P2, board.CheckForCapture);
 
-            PatternExists(board, direction, successfulCapture);
+            PatternExists(board, -direction, successfulCapture, Piece.P2);
         }
         #endregion
 
