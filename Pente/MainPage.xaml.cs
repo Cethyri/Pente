@@ -50,14 +50,6 @@ namespace Pente
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new Uri("/ModePage.xaml", UriKind.Relative));
-            //gameWindow = new GameWindow(this);
-            //this.Hide();
-            //gameWindow.Show();
-
-          //  modeSelect = new ModeSelect(this);
-           // this.Hide();
-       //     modeSelect.Show();
-
         }
 
         private void btnHowToPlay_Click(object sender, RoutedEventArgs e)
@@ -72,7 +64,6 @@ namespace Pente
 
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show("THIS ISNT IMPLEMENTED YET!");
             Manager.instance.board = (Board)DataPersistence.Serializer.LoadFromFile();
             Manager.instance.p1 = Manager.instance.board.p1;
             Manager.instance.p2 = Manager.instance.board.p2;

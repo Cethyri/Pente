@@ -26,10 +26,9 @@ namespace Pente
             InitializeComponent();
         }
 
-        public void InitializeBoard(int size)
+        public void InitializeBoard()
         {
             Board board = Manager.instance.board;
-            board.Initialize(Manager.instance.p1, Manager.instance.p2, size);
 
             int xLength = board.Grid.GetLength(0);
             int yLength = board.Grid.GetLength(1);
