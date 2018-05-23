@@ -38,7 +38,7 @@ namespace Pente
             Grid = new Piece[size, size];
             p1 = player1;
             p2 = player2;
-            //turnCount++;
+            turnCount = 0;
             PlacePiece(new Vec2(size / 2, size / 2));
         }
 
@@ -63,6 +63,8 @@ namespace Pente
                 CheckForCapture(position);
                 if (CheckForWin(position))
                 {
+
+
                     GamePente.LeaveGame();
                     return; // this ends the game HAHAHA
                 }
