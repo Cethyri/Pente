@@ -63,7 +63,14 @@ namespace Pente
                 CheckForCapture(position);
                 if (CheckForWin(position))
                 {
-
+                    if (turnCount%2 == 1)
+                    {
+                        GamePente.Winscreen(p2);
+                    }
+                    else
+                    {
+                        GamePente.Winscreen(p1);
+                    }
 
                     GamePente.LeaveGame();
                     return; // this ends the game HAHAHA
@@ -71,14 +78,14 @@ namespace Pente
 
                 //heck for tressra 
 
-                if (CheckForPattern(position, Tessera, true))
+                if (CheckForPattern(position, Tessera.GetPatternFor(CurrentPlayerPiece), true))
                 {
-                    GamePente.Tressra();
+                    GamePente.Tessra();
                 }
 
                 //check for three line
 
-                if (CheckForPattern(position, Tria, true))
+                if (CheckForPattern(position, Tria.GetPatternFor(CurrentPlayerPiece), true))
                 {
                     GamePente.Tria();
                 }

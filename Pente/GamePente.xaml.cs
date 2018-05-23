@@ -87,10 +87,16 @@ namespace Pente
             instance.btnMainMenu_Click(null, null);
         }
 
-        public static void Tressra()
+        public static void Winscreen(Player p)
+        {
+            MessageBoxResult result = MessageBox.Show("You won " + p.Name + "!!", "Win or something", MessageBoxButton.OK);
+            LeaveGame();
+        }
+
+        public static void Tessra()
         {
             instance.dispatcherTimer.Stop();
-            MessageBoxResult result = MessageBox.Show("Tressra!!", "Four in a row", MessageBoxButton.OK);
+            MessageBoxResult result = MessageBox.Show("Tessra!!", "Four in a row", MessageBoxButton.OK);
             if (result == MessageBoxResult.OK)
             {
                 instance.dispatcherTimer.Start();
