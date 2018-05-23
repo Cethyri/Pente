@@ -112,7 +112,7 @@ namespace Pente
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure you want to save?", "Save", MessageBoxButton.YesNo);
-            if (result.HasFlag(MessageBoxResult.Yes))
+            if (result.Equals(MessageBoxResult.Yes))
             {
                 DataPersistence.Serializer.SaveToFile(Manager.instance.board);
             } 
