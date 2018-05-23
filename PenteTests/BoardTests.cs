@@ -115,6 +115,80 @@ namespace PenteTests
         }
         #endregion
 
+        #region Something Useless
+        [TestMethod]
+        public void PlacePieceTest()
+        {
+            Board board = new Board();
+            Player p1 = new Player();
+            Player p2 = new Player();
+
+            board.Initialize(p1, p2, 19);
+
+            board.PlacePiece(new Vec2(0, 0));
+            Assert.AreEqual(board.Grid.Get(new Vec2(0, 0)), Piece.P2);
+        }
+
+        [TestMethod]
+        public void PlacePieceCenterTest()
+        {
+            Board board = new Board();
+            Player p1 = new Player();
+            Player p2 = new Player();
+
+            board.Initialize(p1, p2, 19);
+
+            board.PlacePiece(new Vec2(9, 9));
+            Assert.AreEqual(board.Grid.Get(new Vec2(9, 9)), Piece.P1);
+        }
+
+        [TestMethod]
+        public void IsValidPlacementTrue()
+        {
+            Board board = new Board();
+            Player p1 = new Player();
+            Player p2 = new Player();
+
+            board.Initialize(p1, p2, 19);
+
+            bool thingy = board.IsValidPlacement(new Vec2(0, 0));
+
+            Assert.IsTrue(thingy);
+
+        }
+
+        [TestMethod]
+        public void IsValidPlacementFalse()
+        {
+            Board board = new Board();
+            Player p1 = new Player();
+            Player p2 = new Player();
+
+            board.Initialize(p1, p2, 19);
+
+            bool thingy = board.IsValidPlacement(new Vec2(9, 9));
+
+            Assert.IsFalse(thingy);
+
+        }
+
+        [TestMethod]
+        public void IsValidPlacementTournament()
+        {
+            Board board = new Board();
+            Player p1 = new Player();
+            Player p2 = new Player();
+
+            board.Initialize(p1, p2, 19);
+            board.turnCount = 2;
+
+            bool thingy = board.IsValidPlacement(new Vec2(9, 8));
+
+            Assert.IsFalse(thingy);
+
+        }
+        #endregion
+
         #region Capture Checks
         public delegate bool CheckForDelegate(Vec2 position);
 
@@ -559,6 +633,104 @@ namespace PenteTests
 
             Vec2 direction = new Vec2 { x = -1, y = 1 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
+        }
+        #endregion
+
+        #region Vec2 and Extension Tests
+        [TestMethod]
+        public void Vec2_Addition()
+        {
+            Vec2 v1 = new Vec2(1, 2);
+            Vec2 v2 = new Vec2(3, 4);
+
+            Vec2 sum = v1 + v2;
+
+            Assert.AreEqual(4, sum.x);
+            Assert.AreEqual(6, sum.y);
+        }
+
+        [TestMethod]
+        public void Vec2_Subtraction()
+        {
+            Vec2 v1 = new Vec2(1, 2);
+            Vec2 v2 = new Vec2(3, 4);
+
+            Vec2 difference = v1 - v2;
+
+            Assert.AreEqual(-2, difference.x);
+            Assert.AreEqual(-2, difference.y);
+        }
+
+        [TestMethod]
+        public void Vec2_Multiplication()
+        {
+            Vec2 v1 = new Vec2(1, 2);
+
+            Vec2 product = v1 * 2;
+
+            Assert.AreEqual(2, product.x);
+            Assert.AreEqual(4, product.y);
+        }
+
+        [TestMethod]
+        public void Vec2_Division()
+        {
+            Vec2 v1 = new Vec2(2, 4);
+
+            Vec2 product = v1 / 2;
+
+            Assert.AreEqual(1, product.x);
+            Assert.AreEqual(2, product.y);
+        }
+
+        [TestMethod]
+        public void Vec2_Negative()
+        {
+            Vec2 v1 = new Vec2(1, 2);
+
+            Vec2 result = -v1;
+
+            Assert.AreEqual(-1, result.x);
+            Assert.AreEqual(-2, result.y);
+        }
+
+        [TestMethod]
+        public void Vec2_ClampMin()
+        {
+            Vec2 v1 = new Vec2(1, 5);
+
+            Vec2 result = v1.Clamp(2, 6);
+
+            Assert.AreEqual(2, result.x);
+            Assert.AreEqual(5, result.y);
+        }
+
+        [TestMethod]
+        public void Vec2_ClampMax()
+        {
+            Vec2 v1 = new Vec2(1, 5);
+
+            Vec2 result = v1.Clamp(0, 4);
+
+            Assert.AreEqual(1, result.x);
+            Assert.AreEqual(4, result.y);
+        }
+
+        [TestMethod]
+        public void PieceGetPattern()
+        {
+            Piece[] pieces = new Piece[5];
+            Piece[] test = new Piece[5];
+            pieces.CopyTo(test, 5);
+            for (int i = 0; i < pieces.Length; i++)
+            {
+                pieces[i] = Piece.P1;
+            }
+
+            pieces.GetPatternFor(Piece.P1);
+
+            Assert.AreEqual(pieces, pieces);
+
         }
         #endregion
     }
