@@ -33,11 +33,6 @@ namespace Pente
         public int turnCount = 0;
         public Piece CurrentPlayerPiece { get { return (turnCount % 2 == 0) ? Piece.P1 : Piece.P2; } }
 
-        /// <summary>
-        /// Initializes the board to empty with p1 piece in the center, initializes players, initializes playerPiece to P1
-        /// </summary>
-        /// <param name="p1"></param>
-        /// <param name="p2"></param>
         public void Initialize(Player player1, Player player2, int size)
         {
             Grid = new Piece[size, size];
@@ -47,10 +42,6 @@ namespace Pente
             turnCount = 1;
         }
 
-        /// <summary>
-        /// checks validity of placement
-        /// </summary>
-        /// <param name="position"></param>
         public bool IsValidPlacement(Vec2 position)
         {
             if (turnCount == 2)
@@ -64,10 +55,6 @@ namespace Pente
             return Grid.Get(position).Equals(Piece.EMPTY);
         }
 
-        /// <summary>
-        /// Placce Piece on board, Check all Patterns, switch currentPlayerPiece, if currentPlayerPiece is P2 and p2 is type computer call PlacePiece(p2.takeTurn())
-        /// </summary>
-        /// <param name="position"></param>
         public void PlacePiece(Vec2 position)
         {
             if (IsValidPlacement(position))
@@ -83,10 +70,6 @@ namespace Pente
             }
         }
 
-        /// <summary>
-        /// CheckForPattern(Win) or currentPlayer captures >= 5
-        /// </summary>
-        /// <returns></returns>
         public bool CheckForWin(Vec2 position)
         {
             Vec2 nothing = new Vec2();
@@ -102,9 +85,6 @@ namespace Pente
             return false;
         }
 
-        /// <summary>
-        /// CheckForPattern(Capture) and then remove pieces if capture exists
-        /// </summary>
         public void CheckForCapture(Vec2 position)
         {
             Vec2 start = new Vec2();
@@ -136,13 +116,6 @@ namespace Pente
             return CheckForPattern(position, pattern, isSymetrical, ref temp, ref temp);
         }
 
-        /// <summary>
-        /// checks for pattern in the row, column, and both diagonals of the placed piece
-        /// </summary>
-        /// <param name="pattern"></param>
-        /// <param name="startOfPattern"></param>
-        /// <param name="foundDirection"></param>
-        /// <returns>bool if the pattern was found</returns>
         public bool CheckForPattern(Vec2 position, Piece[] pattern, bool isSymetrical, ref Vec2 startOfPattern, ref Vec2 foundDirection)
         {
             bool hasFoundPattern = false;
