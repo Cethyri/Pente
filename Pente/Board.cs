@@ -135,10 +135,13 @@ namespace Pente
                 if (CurrentPlayerPiece == Piece.P1)
                 {
                     p1.Captures++;
+                    GamePente.instance.Player1.captures1.Text = p1.Captures.ToString();
                 }
                 else
                 {
                     p2.Captures++;
+                    GamePente.instance.Player2.captures1.Text = p2.Captures.ToString();
+
                 }
             }
             return check;
