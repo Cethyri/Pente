@@ -63,7 +63,8 @@ namespace Pente
 
             Manager.instance.size = (int)sldr.Value;
 
-      //      Manager.instance.board.Initialize(Manager.instance.p1, Manager.instance.p2);
+            Manager.instance.board = new Board();
+            Manager.instance.board.Initialize(Manager.instance.p1, Manager.instance.p2, Manager.instance.size);
             this.NavigationService.Navigate(new Uri("/GamePente.xaml", UriKind.Relative));
         }
     }
