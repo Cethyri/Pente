@@ -29,8 +29,7 @@ namespace Pente
 
                 string imagePath = "Images/";
                 Board board = Manager.instance.board;
-
-                if (board.Grid == null)
+                if (board?.Grid == null)
                 {
                     return "";
                 }

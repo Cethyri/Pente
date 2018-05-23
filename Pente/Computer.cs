@@ -11,7 +11,19 @@ namespace Pente
     {
         public Vec2 TakeTurn()
         {
-            throw new NotImplementedException();
+            bool looper = false;
+            Random rng = new Random();
+            int x = -1;
+            int y = -1;
+            while(looper == false)
+            {
+                x = rng.Next(0, Manager.instance.size);
+                y = rng.Next(0, Manager.instance.size);
+                looper = Manager.instance.board.IsValidPlacement(new Vec2(x, y));
+            }
+            return new Vec2(x, y);
+
+
         }
     }
 }

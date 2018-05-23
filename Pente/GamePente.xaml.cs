@@ -87,6 +87,26 @@ namespace Pente
             instance.btnMainMenu_Click(null, null);
         }
 
+        public static void Tressra()
+        {
+            instance.dispatcherTimer.Stop();
+            MessageBoxResult result = MessageBox.Show("Tressra!!", "Four in a row", MessageBoxButton.OK);
+            if (result == MessageBoxResult.OK)
+            {
+                instance.dispatcherTimer.Start();
+            }
+        }
+
+        internal static void Tria()
+        {
+            instance.dispatcherTimer.Stop();
+            MessageBoxResult result = MessageBox.Show("Tria!!", "Three in a row", MessageBoxButton.OK);
+            if (result == MessageBoxResult.OK)
+            {
+                instance.dispatcherTimer.Start();
+            }
+        }
+
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure you want to save?", "Save", MessageBoxButton.YesNo);

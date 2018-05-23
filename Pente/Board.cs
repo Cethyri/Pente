@@ -38,8 +38,8 @@ namespace Pente
             Grid = new Piece[size, size];
             p1 = player1;
             p2 = player2;
-            Grid[size / 2, size / 2] = Piece.P1;
-            turnCount = 1;
+            //turnCount++;
+            PlacePiece(new Vec2(size / 2, size / 2));
         }
 
         public bool IsValidPlacement(Vec2 position)
@@ -64,18 +64,33 @@ namespace Pente
                 if (CheckForWin(position))
                 {
                     GamePente.LeaveGame();
+                    return; // this ends the game HAHAHA
                 }
 
                 //heck for tressra 
+
+                if (CheckForPattern(position, Tessera, true))
+                {
+                    GamePente.Tressra();
+                }
+
                 //check for three line
+
+                if (CheckForPattern(position, Tria, true))
+                {
+                    GamePente.Tria();
+                }
 
                 GamePente.timerF = 20;
                 turnCount++;
 
                 if (p2.GetType() == typeof(Computer) && turnCount%2 == 1)
                 {
-                    //(Computer)p2.TakeTurn();
+                    PlacePiece((p2 as Computer).TakeTurn());
                 }
+
+
+
             }
         }
 
@@ -94,9 +109,6 @@ namespace Pente
             return false;
         }
 
-        /// <summary>
-        /// CheckForPattern(Capture) and then remove pieces if capture exists
-        /// </summary>
         public bool CheckForCapture(Vec2 position)
         {
             Vec2 start = new Vec2();
