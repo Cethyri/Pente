@@ -39,6 +39,7 @@ namespace Pente
             p1 = player1;
             p2 = player2;
             //turnCount++;
+            turnCount = 0;
             PlacePiece(new Vec2(size / 2, size / 2));
         }
 
