@@ -10,9 +10,9 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="60*"/>
             <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="25*"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="1">
@@ -21,7 +21,7 @@
                 <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
 
-            
+
             <Viewbox Grid.Row="0">
                 <local:BoardControl x:Name="BoardControl"/>
             </Viewbox>
@@ -40,11 +40,15 @@
             </Grid>
 
         </Grid>
-        
+
         <local:PlayerControl x:Name="Player1" Grid.Column="0"/>
 
         <local:PlayerControl x:Name="Player2" Grid.Column="2"/>
-        
-        <ScrollViewer x:Name="playByPlay" Grid.Column="3" Content="{Binding PlayByPlay}"/>
+
+        <Border Grid.Column="3" BorderThickness="2" BorderBrush="DimGray">
+            <ScrollViewer x:Name="playByPlay" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <ListBox ItemsSource="{Binding Path=PlayByPlayList, Mode=OneWay}" IsManipulationEnabled="False" IsEnabled="False" BorderThickness="0"/>
+            </ScrollViewer>
+        </Border>
     </Grid>
 </Page>

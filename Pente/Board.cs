@@ -38,7 +38,7 @@ namespace Pente
             Grid = new Piece[size, size];
             p1 = player1;
             p2 = player2;
-            //turnCount++;
+            turnCount = 0;
             PlacePiece(new Vec2(size / 2, size / 2));
         }
 
@@ -61,45 +61,40 @@ namespace Pente
             {
                 Grid[position.x, position.y] = CurrentPlayerPiece;
                 CheckForCapture(position);
+
+                Player current = turnCount % 2 == 0 ? p1 : p2;
+
                 if (CheckForWin(position))
                 {
-                    if (turnCount%2 == 1)
-                    {
-                        GamePente.Winscreen(p2);
-                    }
-                    else
-                    {
-                        GamePente.Winscreen(p1);
-                    }
+                    GamePente.instance.PlayByPlayList.Add($"{current.Name} Won!");
+
+                    GamePente.Winscreen(current);
 
                     GamePente.LeaveGame();
                     return; // this ends the game HAHAHA
                 }
 
-                //heck for tressra 
+                //check for tessera 
 
                 if (CheckForPattern(position, Tessera.GetPatternFor(CurrentPlayerPiece), true))
                 {
-                    GamePente.Tessra();
+                    GamePente.instance.PlayByPlayList.Add($"{current.Name} made a Tessera!");
                 }
 
                 //check for three line
 
                 if (CheckForPattern(position, Tria.GetPatternFor(CurrentPlayerPiece), true))
                 {
-                    GamePente.Tria();
+                    GamePente.instance.PlayByPlayList.Add($"{current.Name} made a Tria!");
                 }
 
                 GamePente.timerF = 20;
                 turnCount++;
 
-                if (p2.GetType() == typeof(Computer) && turnCount%2 == 1)
+                if (p2.GetType() == typeof(Computer) && turnCount % 2 == 1)
                 {
                     PlacePiece((p2 as Computer).TakeTurn());
                 }
-
-
-
             }
         }
 
@@ -110,7 +105,7 @@ namespace Pente
             {
                 return true;
             }
-            if (p1.Captures >= 5 || p2.Captures >=5)
+            if (p1.Captures >= 5 || p2.Captures >= 5)
             {
                 return true;
             }
@@ -135,8 +130,8 @@ namespace Pente
                 if (CurrentPlayerPiece == Piece.P1)
                 {
                     p1.Captures++;
-                    if(GamePente.instance?.Player1 != null) //it turns out zach hates everyone and wants the code to look like this
-                    GamePente.instance.Player1.captures1.Text = p1.Captures.ToString();
+                    if (GamePente.instance?.Player1 != null) //it turns out zach hates everyone and wants the code to look like this
+                        GamePente.instance.Player1.captures1.Text = p1.Captures.ToString();
                 }
                 else
                 {
@@ -190,7 +185,7 @@ namespace Pente
             startPosition.Clamp(0, Grid.GetLength(0));
             endPosition.Clamp(0, Grid.GetLength(0));
 
-            int startValue = Math.Abs(startPosition.x - position.x) > Math.Abs(startPosition.y - position.y) ? (startPosition.x - position.x) * direction.x: (startPosition.y - position.y) * direction.y;
+            int startValue = Math.Abs(startPosition.x - position.x) > Math.Abs(startPosition.y - position.y) ? (startPosition.x - position.x) * direction.x : (startPosition.y - position.y) * direction.y;
             int endValue = Math.Abs(endPosition.x - position.x) > Math.Abs(endPosition.y - position.y) ? (endPosition.x - position.x) * direction.x : (endPosition.y - position.y) * direction.y;
 
             Vec2 positionToCheck;
@@ -221,16 +216,6 @@ namespace Pente
             }
 
             return hasFoundPattern;
-        }
-
-        public void Save()
-        {
-
-        }
-
-        public void Load()
-        {
-
         }
     }
 }

@@ -27,11 +27,12 @@ namespace Pente
         public static GamePente instance;
         DispatcherTimer dispatcherTimer;
 
-        ObservableCollection<string> PlayByPlay { get; set; }
+        public ObservableCollection<string> PlayByPlayList { get; set; }
 
         public GamePente()
         {
-            PlayByPlay = new ObservableCollection<string>();
+            PlayByPlayList = new ObservableCollection<string>();
+            DataContext = this;
 
             InitializeComponent();
             GamePente.instance = this;
@@ -96,26 +97,6 @@ namespace Pente
         {
             MessageBoxResult result = MessageBox.Show("You won " + p.Name + "!!", "Win or something", MessageBoxButton.OK);
             LeaveGame();
-        }
-
-        public static void Tessra()
-        {
-            instance.dispatcherTimer.Stop();
-            MessageBoxResult result = MessageBox.Show("Tessra!!", "Four in a row", MessageBoxButton.OK);
-            if (result == MessageBoxResult.OK)
-            {
-                instance.dispatcherTimer.Start();
-            }
-        }
-
-        internal static void Tria()
-        {
-            instance.dispatcherTimer.Stop();
-            MessageBoxResult result = MessageBox.Show("Tria!!", "Three in a row", MessageBoxButton.OK);
-            if (result == MessageBoxResult.OK)
-            {
-                instance.dispatcherTimer.Start();
-            }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
