@@ -418,107 +418,147 @@ namespace PenteTests
         }
 
         [TestMethod]
-        public void BoardCheckForWin_Vertical_P1_Test()
+        public void BoardCheckForWin_South_P1_Test()
         {
             Board board = new Board();
-
-            //forwards
+            
             Vec2 direction = new Vec2 { x = 0, y = 1 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
-
-            //backwards
-            BoardTestCheckForPatternMethod(ref board, -direction, board.Win, Piece.P1, board.CheckForWin);
         }
 
         [TestMethod]
-        public void BoardCheckForWin_Horizontal_P1_Test()
+        public void BoardCheckForWin_North_P1_Test()
         {
             Board board = new Board();
+            
+            Vec2 direction = new Vec2 { x = 0, y = -1 };
+            BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
+        }
 
-            //forwards
+        [TestMethod]
+        public void BoardCheckForWin_East_P1_Test()
+        {
+            Board board = new Board();
+            
             Vec2 direction = new Vec2 { x = 1, y = 0 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
-
-            //backwards
-            BoardTestCheckForPatternMethod(ref board, -direction, board.Win, Piece.P1, board.CheckForWin);
         }
 
         [TestMethod]
-        public void BoardCheckForWin_DiagonalDown_P1_Test()
+        public void BoardCheckForWin_West_P1_Test()
         {
             Board board = new Board();
 
-            //forwards
+            Vec2 direction = new Vec2 { x = -1, y = 0 };
+            BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
+        }
+
+        [TestMethod]
+        public void BoardCheckForWin_SouthEast_P1_Test()
+        {
+            Board board = new Board();
+            
             Vec2 direction = new Vec2 { x = 1, y = 1 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
-
-            //backwards
-            BoardTestCheckForPatternMethod(ref board, -direction, board.Win, Piece.P1, board.CheckForWin);
         }
 
         [TestMethod]
-        public void BoardCheckForWin_DiagonalUp_P1_Test()
+        public void BoardCheckForWin_NorthWest_P1_Test()
         {
             Board board = new Board();
 
-            //forwards
+            Vec2 direction = new Vec2 { x = -1, y = -1 };
+            BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
+        }
+
+        [TestMethod]
+        public void BoardCheckForWin_NorthEaast_P1_Test()
+        {
+            Board board = new Board();
+            
             Vec2 direction = new Vec2 { x = 1, y = -1 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
-
-            //backwards
-            BoardTestCheckForPatternMethod(ref board, -direction, board.Win, Piece.P1, board.CheckForWin);
         }
 
         [TestMethod]
-        public void BoardCheckForWin_Vertical_P2_Test()
+        public void BoardCheckForWin_SouthWest_P1_Test()
         {
             Board board = new Board();
 
-            //forwards
+            Vec2 direction = new Vec2 { x = -1, y = 1 };
+            BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P1, board.CheckForWin);
+        }
+
+        [TestMethod]
+        public void BoardCheckForWin_South_P2_Test()
+        {
+            Board board = new Board();
+
             Vec2 direction = new Vec2 { x = 0, y = 1 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
-
-            //backwards
-            BoardTestCheckForPatternMethod(ref board, -direction, board.Win, Piece.P2, board.CheckForWin);
         }
 
         [TestMethod]
-        public void BoardCheckForWin_Horizontal_P2_Test()
+        public void BoardCheckForWin_North_P2_Test()
         {
             Board board = new Board();
 
-            //forwards
+            Vec2 direction = new Vec2 { x = 0, y = -1 };
+            BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
+        }
+
+        [TestMethod]
+        public void BoardCheckForWin_East_P2_Test()
+        {
+            Board board = new Board();
+
             Vec2 direction = new Vec2 { x = 1, y = 0 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
-
-            //backwards
-            BoardTestCheckForPatternMethod(ref board, -direction, board.Win, Piece.P2, board.CheckForWin);
         }
 
         [TestMethod]
-        public void BoardCheckForWin_DiagonalDown_P2_Test()
+        public void BoardCheckForWin_West_P2_Test()
         {
             Board board = new Board();
 
-            //forwards
+            Vec2 direction = new Vec2 { x = -1, y = 0 };
+            BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
+        }
+
+        [TestMethod]
+        public void BoardCheckForWin_SouthEast_P2_Test()
+        {
+            Board board = new Board();
+
             Vec2 direction = new Vec2 { x = 1, y = 1 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
-
-            //backwards
-            BoardTestCheckForPatternMethod(ref board, -direction, board.Win, Piece.P2, board.CheckForWin);
         }
 
         [TestMethod]
-        public void BoardCheckForWin_DiagonalUp_P2_Test()
+        public void BoardCheckForWin_NorthWest_P2_Test()
         {
             Board board = new Board();
 
-            //forwards
-            Vec2 direction = new Vec2(1, -1);
+            Vec2 direction = new Vec2 { x = -1, y = -1 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
+        }
 
-            //backwards
-            BoardTestCheckForPatternMethod(ref board, -direction, board.Win, Piece.P2, board.CheckForWin);
+        [TestMethod]
+        public void BoardCheckForWin_NorthEaast_P2_Test()
+        {
+            Board board = new Board();
+
+            Vec2 direction = new Vec2 { x = 1, y = -1 };
+            BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
+        }
+
+        [TestMethod]
+        public void BoardCheckForWin_SouthWest_P2_Test()
+        {
+            Board board = new Board();
+
+            Vec2 direction = new Vec2 { x = -1, y = 1 };
+            BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
         }
         #endregion
     }

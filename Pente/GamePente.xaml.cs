@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,8 +27,12 @@ namespace Pente
         public static GamePente instance;
         DispatcherTimer dispatcherTimer;
 
+        ObservableCollection<string> PlayByPlay { get; set; }
+
         public GamePente()
         {
+            PlayByPlay = new ObservableCollection<string>();
+
             InitializeComponent();
             GamePente.instance = this;
             BoardControl.InitializeBoard();
