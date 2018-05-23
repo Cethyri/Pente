@@ -135,12 +135,15 @@ namespace Pente
                 if (CurrentPlayerPiece == Piece.P1)
                 {
                     p1.Captures++;
+                    if(GamePente.instance?.Player1 != null) //it turns out zach hates everyone and wants the code to look like this
                     GamePente.instance.Player1.captures1.Text = p1.Captures.ToString();
                 }
                 else
                 {
                     p2.Captures++;
-                    GamePente.instance.Player2.captures1.Text = p2.Captures.ToString();
+                    if (GamePente.instance?.Player2 != null)
+
+                        GamePente.instance.Player2.captures1.Text = p2.Captures.ToString();
 
                 }
             }
