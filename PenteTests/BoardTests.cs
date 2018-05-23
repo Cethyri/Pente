@@ -156,6 +156,8 @@ namespace PenteTests
 
             board.Initialize(p1, p2, 19);
 
+            board.turnCount = 2;
+
             Piece[] pattern = board.Capture.GetPatternFor(Piece.P1);
 
             foreach (Vec2 direction in board.directions)
@@ -168,7 +170,7 @@ namespace PenteTests
                 }
             }
 
-            board.CheckForCapture(start);
+            bool test = board.CheckForCapture(start);
 
             foreach (Vec2 direction in board.directions)
             {
