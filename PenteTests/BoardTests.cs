@@ -147,140 +147,241 @@ namespace PenteTests
         }
 
         [TestMethod]
-        public void BoardCheckForCapture_Vertical_P1_Test()
+        public void BoardCheckForCapture_CapturesAll_P1_Test()
         {
             Board board = new Board();
 
-            //forwards
+            Player p1 = new Player();
+            Player p2 = new Player();
+
+            board.Initialize(p1, p2, 19);
+
+            foreach (Vec2 direction in board.directions)
+            {
+                for (int i = 0; i < board.Capture.Length; i++)
+                {
+                    board.Grid.Set(start + direction * i, board.Capture[i]);
+
+                    board.Grid.Set(start - direction * i, board.Capture[i]);
+                }
+            }
+
+            board.CheckForCapture(start);
+
+            foreach (Vec2 direction in board.directions)
+            {
+                PatternExists(board, direction, successfulCapture, Piece.P1);
+                
+                PatternExists(board, -direction, successfulCapture, Piece.P1);
+            }
+        }
+
+        [TestMethod]
+        public void BoardCheckForCapture_CapturesAll_P2_Test()
+        {
+            Board board = new Board();
+
+            Player p1 = new Player();
+            Player p2 = new Player();
+
+            board.Initialize(p1, p2, 19);
+
+            Piece[] pattern = board.Capture.GetPatternFor(Piece.P2);
+
+            foreach (Vec2 direction in board.directions)
+            {
+                for (int i = 0; i < board.Capture.Length; i++)
+                {
+                    board.Grid.Set(start + direction * i, board.Capture[i]);
+
+                    board.Grid.Set(start - direction * i, board.Capture[i]);
+                }
+            }
+
+            board.CheckForCapture(start);
+
+            foreach (Vec2 direction in board.directions)
+            {
+                PatternExists(board, direction, successfulCapture, Piece.P2);
+
+                PatternExists(board, -direction, successfulCapture, Piece.P2);
+            }
+        }
+
+        [TestMethod]
+        public void BoardCheckForCapture_South_P1_Test()
+        {
+            Board board = new Board();
+
             Vec2 direction = new Vec2 { x = 0, y = 1 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
 
             PatternExists(board, direction, successfulCapture, Piece.P1);
-
-            //backwards
-            BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P1, board.CheckForCapture);
-
-            PatternExists(board, -direction, successfulCapture, Piece.P1);
         }
 
         [TestMethod]
-        public void BoardCheckForCapture_Horizontal_P1_Test()
+        public void BoardCheckForCapture_North_P1_Test()
         {
             Board board = new Board();
+            
+            Vec2 direction = new Vec2 { x = 0, y = -1 };
+            BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
 
-            //forwards
+            PatternExists(board, direction, successfulCapture, Piece.P1);
+        }
+
+        [TestMethod]
+        public void BoardCheckForCapture_East_P1_Test()
+        {
+            Board board = new Board();
+            
             Vec2 direction = new Vec2 { x = 1, y = 0 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
 
             PatternExists(board, direction, successfulCapture, Piece.P1);
-
-            //backwards
-            BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P1, board.CheckForCapture);
-
-            PatternExists(board, -direction, successfulCapture, Piece.P1);
         }
 
         [TestMethod]
-        public void BoardCheckForCapture_DiagonalDown_P1_Test()
+        public void BoardCheckForCapture_West_P1_Test()
         {
             Board board = new Board();
 
-            //forwards
+            Vec2 direction = new Vec2 { x = -1, y = 0 };
+            BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
+
+            PatternExists(board, direction, successfulCapture, Piece.P1);
+        }
+
+        [TestMethod]
+        public void BoardCheckForCapture_SouthEast_P1_Test()
+        {
+            Board board = new Board();
+            
             Vec2 direction = new Vec2 { x = 1, y = 1 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
 
             PatternExists(board, direction, successfulCapture, Piece.P1);
-
-            //backwards
-            BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P1, board.CheckForCapture);
-
-            PatternExists(board, -direction, successfulCapture, Piece.P1);
         }
 
         [TestMethod]
-        public void BoardCheckForCapture_DiagonalUp_P1_Test()
+        public void BoardCheckForCapture_NorthWest_P1_Test()
         {
             Board board = new Board();
+            
+            Vec2 direction = new Vec2 { x = -1, y = -1 };
+            BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
 
-            //forwards
+            PatternExists(board, direction, successfulCapture, Piece.P1);
+        }
+
+        [TestMethod]
+        public void BoardCheckForCapture_NorthEast_P1_Test()
+        {
+            Board board = new Board();
+            
             Vec2 direction = new Vec2 { x = 1, y = -1 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
 
             PatternExists(board, direction, successfulCapture, Piece.P1);
-
-            //backwards
-            BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P1, board.CheckForCapture);
-
-            PatternExists(board, -direction, successfulCapture, Piece.P1);
         }
 
         [TestMethod]
-        public void BoardCheckForCapture_Vertical_P2_Test()
+        public void BoardCheckForCapture_SouthWest_P1_Test()
         {
             Board board = new Board();
 
-            //forwards
+            Vec2 direction = new Vec2 { x = -1, y = 1 };
+            BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P1, board.CheckForCapture);
+
+            PatternExists(board, direction, successfulCapture, Piece.P1);
+        }
+
+        [TestMethod]
+        public void BoardCheckForCapture_South_P2_Test()
+        {
+            Board board = new Board();
+
             Vec2 direction = new Vec2 { x = 0, y = 1 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
 
             PatternExists(board, direction, successfulCapture, Piece.P2);
-
-            //backwards
-            BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P2, board.CheckForCapture);
-
-            PatternExists(board, -direction, successfulCapture, Piece.P2);
         }
 
         [TestMethod]
-        public void BoardCheckForCapture_Horizontal_P2_Test()
+        public void BoardCheckForCapture_North_P2_Test()
         {
             Board board = new Board();
 
-            //forwards
+            Vec2 direction = new Vec2 { x = 0, y = -1 };
+            BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
+
+            PatternExists(board, direction, successfulCapture, Piece.P2);
+        }
+
+        [TestMethod]
+        public void BoardCheckForCapture_East_P2_Test()
+        {
+            Board board = new Board();
+
             Vec2 direction = new Vec2 { x = 1, y = 0 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
 
             PatternExists(board, direction, successfulCapture, Piece.P2);
-
-            //backwards
-            BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P2, board.CheckForCapture);
-
-            PatternExists(board, -direction, successfulCapture, Piece.P2);
         }
 
         [TestMethod]
-        public void BoardCheckForCapture_DiagonalDown_P2_Test()
+        public void BoardCheckForCapture_West_P2_Test()
         {
             Board board = new Board();
 
-            //forwards
+            Vec2 direction = new Vec2 { x = -1, y = 0 };
+            BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
+
+            PatternExists(board, direction, successfulCapture, Piece.P2);
+        }
+
+        [TestMethod]
+        public void BoardCheckForCapture_SouthEast_P2_Test()
+        {
+            Board board = new Board();
+
             Vec2 direction = new Vec2 { x = 1, y = 1 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
 
             PatternExists(board, direction, successfulCapture, Piece.P2);
-
-            //backwards
-            BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P2, board.CheckForCapture);
-
-            PatternExists(board, -direction, successfulCapture, Piece.P2);
         }
 
         [TestMethod]
-        public void BoardCheckForCapture_DiagonalUp_P2_Test()
+        public void BoardCheckForCapture_NorthWest_P2_Test()
         {
             Board board = new Board();
 
-            //forwards
-            Vec2 direction = new Vec2 { x = 1, y = -1 };
-
+            Vec2 direction = new Vec2 { x = -1, y = -1 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
 
             PatternExists(board, direction, successfulCapture, Piece.P2);
+        }
 
-            //backwards
-            BoardTestCheckForPatternMethod(ref board, -direction, board.Capture, Piece.P2, board.CheckForCapture);
+        [TestMethod]
+        public void BoardCheckForCapture_NorthEast_P2_Test()
+        {
+            Board board = new Board();
 
-            PatternExists(board, -direction, successfulCapture, Piece.P2);
+            Vec2 direction = new Vec2 { x = 1, y = -1 };
+            BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
+
+            PatternExists(board, direction, successfulCapture, Piece.P2);
+        }
+
+        [TestMethod]
+        public void BoardCheckForCapture_SouthWest_P2_Test()
+        {
+            Board board = new Board();
+
+            Vec2 direction = new Vec2 { x = -1, y = 1 };
+            BoardTestCheckForPatternMethod(ref board, direction, board.Capture, Piece.P2, board.CheckForCapture);
+
+            PatternExists(board, direction, successfulCapture, Piece.P2);
         }
         #endregion
 
