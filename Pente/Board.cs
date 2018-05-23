@@ -74,12 +74,21 @@ namespace Pente
             {
                 Grid[position.x, position.y] = CurrentPlayerPiece;
                 CheckForCapture(position);
+                if (CheckForWin(position))
+                {
+                    GamePente.LeaveGame();
+                }
+
                 //heck for tressra 
                 //check for three line
 
-                CheckForWin(position);
                 GamePente.timerF = 20;
                 turnCount++;
+
+                if (p2.GetType() == typeof(Computer) && turnCount%2 == 1)
+                {
+                    //(Computer)p2.TakeTurn();
+                }
             }
         }
 
@@ -105,13 +114,14 @@ namespace Pente
         /// <summary>
         /// CheckForPattern(Capture) and then remove pieces if capture exists
         /// </summary>
-        public void CheckForCapture(Vec2 position)
+        public bool CheckForCapture(Vec2 position)
         {
             Vec2 start = new Vec2();
             Vec2 direction = new Vec2();
-            
+            bool check = false;
             while (CheckForPattern(position, Capture.GetPatternFor(CurrentPlayerPiece), false, ref start, ref direction))
             {
+                check = true;
                 start += direction;
                 Grid.Set(start, Piece.EMPTY);// = Piece.EMPTY;
                 start += direction;
@@ -127,6 +137,7 @@ namespace Pente
                     p2.Captures++;
                 }
             }
+            return check;
             //return false;
         }
 

@@ -23,13 +23,13 @@ namespace Pente
     {
         public static int timerF = 20;
         string time = "20";
-
+        public static GamePente instance;
         DispatcherTimer dispatcherTimer;
 
         public GamePente()
         {
             InitializeComponent();
-
+            GamePente.instance = this;
             BoardControl.InitializeBoard();
 
             Player1.SetPlayer(ref Manager.instance.p1);
@@ -73,13 +73,18 @@ namespace Pente
             timerF = 20;
         }
 
-        private void btnMainMenu_Click(object sender, RoutedEventArgs e)
+        public void btnMainMenu_Click(object sender, RoutedEventArgs e)
         {
             dispatcherTimer.Stop();
 
             Manager.instance.board = null;
 
             this.NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+        }
+
+        public static void LeaveGame()
+        {
+            instance.btnMainMenu_Click(null, null);
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
