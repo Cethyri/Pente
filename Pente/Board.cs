@@ -68,6 +68,7 @@ namespace Pente
                 {
                     GamePente.instance?.PlayByPlayList.Add($"{current.Name} Won!");
 
+                    GamePente.instance.dispatcherTimer.Stop();
                     GamePente.Winscreen(current);
 
                     GamePente.LeaveGame();

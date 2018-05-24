@@ -25,7 +25,7 @@ namespace Pente
         public static int timerF = 20;
         string time = "20";
         public static GamePente instance;
-        DispatcherTimer dispatcherTimer;
+        public DispatcherTimer dispatcherTimer;
 
         public ObservableCollection<string> PlayByPlayList { get; set; }
 
@@ -111,11 +111,15 @@ namespace Pente
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            instance.dispatcherTimer.Stop();
+
             MessageBoxResult result = MessageBox.Show("Are you sure you want to save?", "Save", MessageBoxButton.YesNo);
             if (result.Equals(MessageBoxResult.Yes))
             {
                 DataPersistence.Serializer.SaveToFile(Manager.instance.board);
-            } 
+            }
+
+            instance.dispatcherTimer.Start();
         }
     }
 }
