@@ -8,6 +8,8 @@ namespace PenteTests
     public class BoardTests
     {
         private readonly Piece[] successfulCapture = { Piece.P1, Piece.EMPTY, Piece.EMPTY, Piece.P1 };
+        private readonly Piece[] Tria = { Piece.P1, Piece.P1, Piece.P1, Piece.P2 };
+
         private Vec2 start = new Vec2(9, 9);
 
         #region Initialize Tests
@@ -634,6 +636,99 @@ namespace PenteTests
             Vec2 direction = new Vec2 { x = -1, y = 1 };
             BoardTestCheckForPatternMethod(ref board, direction, board.Win, Piece.P2, board.CheckForWin);
         }
+        #endregion
+
+        #region CheckForPatternTests
+        [TestMethod]
+        public void CheckForPatternTestTessEmpty()
+        {
+            Board board = new Board();
+            Player p1 = new Player();
+            Player p2 = new Player();
+
+            board.Initialize(p1, p2, 19);
+            Assert.IsFalse(board.CheckForPattern(new Vec2(0, 0), board.Tessera, false));
+        }
+
+        [TestMethod]
+        public void CheckForPatternTestTessHori()
+        {
+            Board board = new Board();
+            Player p1 = new Player();
+            Player p2 = new Player();
+            
+            board.Initialize(p1, p2, 19);
+
+            board.Grid.Set(new Vec2(0, 0), Piece.P1);
+            board.Grid.Set(new Vec2(0, 1), Piece.P1);
+            board.Grid.Set(new Vec2(0, 2), Piece.P1);
+            board.Grid.Set(new Vec2(0, 3), Piece.P1);
+
+            Assert.IsTrue(board.CheckForPattern(new Vec2(0, 0), board.Tessera, true));
+        }
+
+        [TestMethod]
+        public void CheckForPatternTestTessVert()
+        {
+            Board board = new Board();
+            Player p1 = new Player();
+            Player p2 = new Player();
+
+            board.Initialize(p1, p2, 19);
+
+            board.Grid.Set(new Vec2(0, 0), Piece.P1);
+            board.Grid.Set(new Vec2(1, 0), Piece.P1);
+            board.Grid.Set(new Vec2(2, 0), Piece.P1);
+            board.Grid.Set(new Vec2(3, 0), Piece.P1);
+
+            Assert.IsTrue(board.CheckForPattern(new Vec2(0, 0), board.Tessera, true));
+        }
+
+        [TestMethod]
+        public void CheckForPatternTestTessDiagonal1()
+        {
+            Board board = new Board();
+            Player p1 = new Player();
+            Player p2 = new Player();
+
+            board.Initialize(p1, p2, 19);
+
+            board.Grid.Set(new Vec2(0, 0), Piece.P1);
+            board.Grid.Set(new Vec2(1, 1), Piece.P1);
+            board.Grid.Set(new Vec2(2, 2), Piece.P1);
+            board.Grid.Set(new Vec2(3, 3), Piece.P1);
+            
+            Assert.IsTrue(board.CheckForPattern(new Vec2(0, 0), board.Tessera, true));
+        }
+
+        [TestMethod]
+        public void CheckForPatternTestTessDiagonal2()
+        {
+            Board board = new Board();
+            Player p1 = new Player();
+            Player p2 = new Player();
+
+            board.Initialize(p1, p2, 19);
+
+            board.Grid.Set(new Vec2(4, 4), Piece.P1);
+            board.Grid.Set(new Vec2(3, 3), Piece.P1);
+            board.Grid.Set(new Vec2(2, 2), Piece.P1);
+            board.Grid.Set(new Vec2(1, 1), Piece.P1);
+
+            Assert.IsTrue(board.CheckForPattern(new Vec2(4, 4), board.Tessera, true));
+        }
+
+        [TestMethod]
+        public void CheckForPatternTestTriaEmpty()
+        {
+            Board board = new Board();
+            Player p1 = new Player();
+            Player p2 = new Player();
+            
+            board.Initialize(p1, p2, 19);
+            Assert.IsFalse(board.CheckForPattern(new Vec2(0, 0), board.Tria, false));
+        }
+
         #endregion
 
         #region Vec2 and Extension Tests
