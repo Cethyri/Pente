@@ -187,6 +187,7 @@ namespace Pente
 
             int startValue = Math.Abs(startPosition.x - position.x) > Math.Abs(startPosition.y - position.y) ? (startPosition.x - position.x) * direction.x : (startPosition.y - position.y) * direction.y;
             int endValue = Math.Abs(endPosition.x - position.x) > Math.Abs(endPosition.y - position.y) ? (endPosition.x - position.x) * direction.x : (endPosition.y - position.y) * direction.y;
+            endValue -= pattern.Length;
 
             Vec2 positionToCheck;
 

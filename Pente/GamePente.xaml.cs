@@ -50,6 +50,8 @@ namespace Pente
             Timer.DataContext = time;
         }
 
+        float timerBeepNum = 5;
+
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             if (timerF <= 0)
@@ -59,6 +61,12 @@ namespace Pente
             else
             {
                 timerF -= dispatcherTimer.Interval.Seconds;
+
+                while (timerF <= timerBeepNum)
+                {
+                    timerBeepNum -= .5f;
+                    Console.Beep(440, 300);
+                }
             }
 
             time = timerF.ToString();
@@ -72,11 +80,13 @@ namespace Pente
         public void ResetClock()
         {
             MessageBox.Show("Your turn is skipped.", "Time's Up!");
+            PlayByPlayList.Add($"Skipped {(Manager.instance.board.turnCount % 2 == 0 ? Manager.instance.board.p1 : Manager.instance.board.p2).Name}'s turn!");
 
             Manager.instance.board.turnCount++;
             BoardControl.UpdateImages();
 
             timerF = 20;
+            timerBeepNum = 5;
         }
 
         public void btnMainMenu_Click(object sender, RoutedEventArgs e)
@@ -102,7 +112,7 @@ namespace Pente
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure you want to save?", "Save", MessageBoxButton.YesNo);
-            if (result.HasFlag(MessageBoxResult.Yes))
+            if (result.Equals(MessageBoxResult.Yes))
             {
                 DataPersistence.Serializer.SaveToFile(Manager.instance.board);
             } 
