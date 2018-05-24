@@ -77,7 +77,7 @@ namespace Pente
 
                 //check for tessera 
 
-                if (CheckForPattern(position, Tessera.GetPatternFor(CurrentPlayerPiece), true))
+                if (CheckForPattern(position, Tessera.GetPatternFor(CurrentPlayerPiece), false))
                 {
                     GamePente.instance?.PlayByPlayList.Add($"{current.Name} made a Tessera!");
                 }
@@ -181,7 +181,7 @@ namespace Pente
         public bool CheckForPatternInDirection(Vec2 position, Piece[] pattern, ref Vec2 startOfPattern, Vec2 direction)
         {
             Vec2 startPosition = position - (direction * (pattern.Length - 1));
-            Vec2 endPosition = position + (direction * (pattern.Length - 1));
+            Vec2 endPosition = position + (direction * (pattern.Length));
 
             startPosition.Clamp(0, Grid.GetLength(0));
             endPosition.Clamp(0, Grid.GetLength(0));

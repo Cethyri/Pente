@@ -548,7 +548,7 @@ namespace PenteTests
         }
 
         [TestMethod]
-        public void BoardCheckForWin_NorthEaast_P1_Test()
+        public void BoardCheckForWin_NorthEast_P1_Test()
         {
             Board board = new Board();
             
@@ -620,7 +620,7 @@ namespace PenteTests
         }
 
         [TestMethod]
-        public void BoardCheckForWin_NorthEaast_P2_Test()
+        public void BoardCheckForWin_NorthEast_P2_Test()
         {
             Board board = new Board();
 
