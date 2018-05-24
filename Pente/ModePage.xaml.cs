@@ -61,6 +61,9 @@ namespace Pente
                 Manager.instance.p2.Name = txtboxP2.Text;
             }
 
+            Manager.instance.p1.Captures = 0;
+            Manager.instance.p2.Captures = 0;
+
             Manager.instance.size = (int)sldr.Value;
 
             Manager.instance.board = new Board();
